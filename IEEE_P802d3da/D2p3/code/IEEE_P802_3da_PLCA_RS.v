@@ -599,6 +599,7 @@ wire             dplca_txop_end;
 wire[7:0]        dplca_txop_id;
 wire[7:0]        dplca_txop_node_count;
 wire[7:0]        bc;
+wire             plca_tx_beacon;
 
 
 wire             commit_timer_done;
@@ -675,7 +676,8 @@ mod_148_3 mod_inst_148_3(
                  .dplca_txop_end(dplca_txop_end),
                  .dplca_txop_id(dplca_txop_id),
                  .dplca_txop_node_count(dplca_txop_node_count),
-                 .bc(bc)
+                 .bc(bc),
+                 .plca_tx_beacon(plca_tx_beacon)
                  );
 
 
