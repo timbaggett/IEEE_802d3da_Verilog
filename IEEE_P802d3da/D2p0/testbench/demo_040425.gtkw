@@ -1,0 +1,230 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Apr 05 16:15:58 2025
+[*]
+[dumpfile] "C:\Users\lawda\OneDrive - Hewlett Packard Enterprise\IEEE 802\IEEE 802.3\IEEE 802.3 Task Forces\802.3da\simulate\D2p1\code\IEEE802_3da.dump"
+[dumpfile_mtime] "Sat Apr 05 16:14:48 2025"
+[dumpfile_size] 339348188
+[savefile] "C:\Users\lawda\OneDrive - Hewlett Packard Enterprise\IEEE 802\IEEE 802.3\IEEE 802.3 Task Forces\802.3da\simulate\D2p1\code\demo_040425.gtkw"
+[timestart] 0
+[size] 1920 1057
+[pos] -1 -1
+*-41.093086 5159201300000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.dte_node_0.MAC.
+[treeopen] top.dte_node_0.PHY.mod_inst_147_7.
+[treeopen] top.dte_node_0.RS.mod_inst_148_4_7_timer.
+[treeopen] top.dte_node_1.
+[treeopen] top.dte_node_1.MAC.
+[treeopen] top.dte_node_1.RS.
+[treeopen] top.dte_node_1.RS.mod_inst_148_4_4_timer.
+[treeopen] top.dte_node_1.RS.mod_inst_148_4_7_timer.
+[treeopen] top.dte_node_13.MAC.
+[treeopen] top.dte_node_14.MAC.
+[treeopen] top.dte_node_15.MAC.
+[treeopen] top.dte_node_2.MAC.
+[treeopen] top.dte_node_2.RS.
+[treeopen] top.dte_node_2.RS.mod_inst_148_4_7_timer.
+[treeopen] top.dte_node_3.RS.
+[treeopen] top.dte_node_3.RS.mod_inst_148_4_7_timer.
+[treeopen] top.dte_node_4.RS.mod_inst_148_4_6_timer.
+[sst_width] 344
+[signals_width] 647
+[sst_expanded] 1
+[sst_vpaned_height] 595
+@28
+top.BI_DA_N
+top.BI_DA_P
+@8024
+top.dte_node_0.MAC.BackOff.maxBackOff[10:0]
+@8022
+top.dte_node_1.MAC.BackOff.maxBackOff[10:0]
+top.dte_node_14.MAC.BackOff.maxBackOff[10:0]
+top.dte_node_15.MAC.BackOff.maxBackOff[10:0]
+@28
+top.dte_node_0.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_1.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_14.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_15.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_0.TX_ER
+top.dte_node_0.TX_EN
+top.dte_node_0.COL
+top.dte_node_0.CRS
+top.dte_node_1.TX_ER
+top.dte_node_1.TX_EN
+top.dte_node_0.RX_DV
+top.dte_node_0.RX_ER
+@22
+top.dte_node_0.RS.local_nodeID[7:0]
+top.dte_node_1.RS.local_nodeID[7:0]
+@28
+top.dte_node_0.RS.plca_active
+top.dte_node_1.RS.plca_active
+@820
+top.dte_node_0.RS.rx_cmd_ASCII[103:0]
+top.dte_node_1.RS.rx_cmd_ASCII[103:0]
+@28
+top.dte_node_0.RS.dplca_txop_claim[1:0]
+top.dte_node_1.RS.dplca_txop_claim[1:0]
+top.dte_node_2.RS.dplca_txop_claim[1:0]
+top.dte_node_3.RS.dplca_txop_claim[1:0]
+@22
+top.dte_node_0.RS.dplca_txop_id[7:0]
+top.dte_node_1.RS.dplca_txop_id[7:0]
+top.dte_node_2.RS.dplca_txop_id[7:0]
+top.dte_node_3.RS.dplca_txop_id[7:0]
+@28
+top.dte_node_0.MAC.MA_DATA_request.MA_DATA_request
+@22
+top.dte_node_0.RS.mod_inst_148_5.a[6:0]
+top.dte_node_0.RS.mod_inst_148_5.delay_line_length[7:0]
+@820
+top.dte_node_0.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_0.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_0.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+@22
+top.dte_node_0.RS.mod_inst_148_3.curID[7:0]
+top.dte_node_0.RS.mod_inst_148_3.local_nodeID[7:0]
+@28
+top.dte_node_0.RS.packetPending
+top.dte_node_0.RS.mod_inst_148_5.plca_txen
+top.dte_node_0.RS.mod_inst_148_5.plca_txer
+top.dte_node_0.RS.mod_inst_148_5.CRS
+top.dte_node_0.RS.mod_inst_148_3.COL
+top.dte_node_0.RS.mod_inst_148_5.CARRIER_STATUS
+top.dte_node_0.RS.mod_inst_148_5.TX_EN
+top.dte_node_0.RS.mod_inst_148_5.TX_ER
+@22
+top.dte_node_0.RS.mod_inst_148_5.TXD[3:0]
+@820
+top.dte_node_0.RS.mod_inst_148_5.tx_cmd_sync_ASCII[47:0]
+@28
+top.dte_node_0.RS.mod_inst_148_5.receiving
+top.dte_node_0.RS.mod_inst_148_3.committed
+top.dte_node_0.RS.mod_inst_148_8.dplca_txop_table_upd
+top.dte_node_0.RS.mod_inst_148_8.dplca_new_age
+top.dte_node_0.PLS.PLS_DATA_request
+top.dte_node_0.RS.mod_inst_148_3.CRS
+top.dte_node_0.RS.COL
+top.dte_node_0.RS.TX_EN
+@820
+top.dte_node_3.RS.txop_claim_table_unpack[0].ASCII[31:0]
+top.dte_node_3.RS.txop_claim_table_unpack[1].ASCII[31:0]
+top.dte_node_3.RS.txop_claim_table_unpack[2].ASCII[31:0]
+top.dte_node_3.RS.txop_claim_table_unpack[3].ASCII[31:0]
+top.dte_node_3.RS.txop_claim_table_unpack[4].ASCII[31:0]
+top.dte_node_3.RS.txop_claim_table_unpack[5].ASCII[31:0]
+@22
+top.dte_node_0.RS.curID[7:0]
+top.dte_node_1.RS.curID[7:0]
+top.dte_node_2.RS.curID[7:0]
+top.dte_node_3.RS.curID[7:0]
+top.dte_node_4.RS.curID[7:0]
+@28
+top.dte_node_1.RS.to_timer_done
+top.dte_node_2.RS.to_timer_done
+top.dte_node_3.RS.to_timer_done
+top.dte_node_4.RS.to_timer_done
+@22
+top.dte_node_0.RS.curID[7:0]
+top.dte_node_0.RS.dplca_txop_id[7:0]
+top.dte_node_0.RS.plca_node_count[7:0]
+top.dte_node_1.RS.plca_node_count[7:0]
+top.dte_node_0.RS.dplca_txop_node_count[7:0]
+top.dte_node_1.RS.plca_node_count[7:0]
+top.dte_node_0.RS.local_nodeID[7:0]
+top.dte_node_1.RS.local_nodeID[7:0]
+top.dte_node_2.RS.local_nodeID[7:0]
+top.dte_node_3.RS.local_nodeID[7:0]
+top.dte_node_4.RS.local_nodeID[7:0]
+@28
+top.dte_node_0.RS.beacon_det_timer_done
+top.dte_node_1.RS.beacon_det_timer_done
+top.dte_node_2.RS.beacon_det_timer_done
+top.dte_node_3.RS.beacon_det_timer_done
+top.dte_node_4.RS.beacon_det_timer_done
+top.dte_node_0.RS.plca_active
+top.dte_node_1.RS.plca_active
+top.dte_node_2.RS.plca_active
+top.dte_node_3.RS.plca_active
+top.dte_node_4.RS.plca_active
+@820
+top.dte_node_0.RS.plca_status_ASCII[31:0]
+top.dte_node_1.RS.plca_status_ASCII[31:0]
+top.dte_node_2.RS.plca_status_ASCII[31:0]
+top.dte_node_3.RS.plca_status_ASCII[31:0]
+top.dte_node_4.RS.plca_status_ASCII[31:0]
+@28
+top.dte_node_1.RS.plca_status
+top.dte_node_2.RS.plca_status
+top.dte_node_3.RS.plca_status
+top.dte_node_4.RS.plca_status
+top.dte_node_0.RS.wait_beacon_timer_done
+top.dte_node_1.RS.wait_beacon_timer_done
+top.dte_node_2.RS.wait_beacon_timer_done
+top.dte_node_3.RS.wait_beacon_timer_done
+top.dte_node_4.RS.wait_beacon_timer_done
+@22
+top.dte_node_0.RS.local_nodeID[7:0]
+@28
+top.dte_node_0.RS.receiving
+@820
+top.dte_node_0.RS.rx_cmd_ASCII[103:0]
+@28
+top.dte_node_0.RS.invalid_beacon_timer_done
+top.dte_node_0.RS.CRS
+top.dte_node_0.RS.COL
+@22
+top.dte_node_0.RS.curID[7:0]
+@28
+top.dte_node_0.RS.mod_inst_148_4_4_timer.invalid_beacon_timer.start
+top.dte_node_1.RS.mod_inst_148_4_4_timer.invalid_beacon_timer.start
+top.dte_node_1.RS.mod_inst_148_4_4_timer.invalid_beacon_timer.start_timer
+top.dte_node_1.RS.mod_inst_148_4_4_timer.invalid_beacon_timer.stop
+top.dte_node_1.RS.mod_inst_148_4_4_timer.to_timer.start
+@22
+top.dte_node_1.RS.curID[7:0]
+@28
+top.dte_node_1.RS.mod_inst_148_4_4_timer.to_timer_done
+top.dte_node_0.RS.beacon_det_timer_done
+@820
+top.dte_node_0.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_1.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_2.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_3.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_4.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_0.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_1.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_2.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_3.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_4.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_0.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_1.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_2.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_3.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_4.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+@28
+top.dte_node_0.RS.coordinator_role_allowed
+top.dte_node_1.RS.coordinator_role_allowed
+top.dte_node_2.RS.coordinator_role_allowed
+top.dte_node_3.RS.coordinator_role_allowed
+top.dte_node_4.RS.coordinator_role_allowed
+@820
+top.dte_node_1.RS.tx_cmd_sync_ASCII[47:0]
+@28
+top.dte_node_1.RS.TX_ER
+top.dte_node_1.RS.CRS
+@820
+top.dte_node_1.RS.rx_cmd_ASCII[103:0]
+top.dte_node_0.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_1.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_2.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_3.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_4.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_0.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_1.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_2.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_3.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_4.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+[pattern_trace] 1
+[pattern_trace] 0
