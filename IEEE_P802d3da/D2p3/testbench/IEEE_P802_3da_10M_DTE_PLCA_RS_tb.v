@@ -37,6 +37,7 @@ reg[7:0]     i15;
 initial
 begin
 
+    $timeformat(-6, 3, " us", 20);
     $dumpfile("IEEE802_3da.dump");
     $dumpvars(5, top, tb);
 

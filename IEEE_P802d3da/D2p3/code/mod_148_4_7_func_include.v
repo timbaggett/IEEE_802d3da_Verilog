@@ -182,6 +182,7 @@ begin
             PICK_FREE_TXOP_function = id_pick;
         end
     end
+    // $display("time = %0t %m PICK_FREE_TXOP_function = 0x%0h", $time, PICK_FREE_TXOP_function);
 
 end
 endfunction
