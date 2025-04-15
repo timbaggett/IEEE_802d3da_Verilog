@@ -26,6 +26,7 @@ module           mod_148_8(
                  dplca_txop_id,
                  dplca_txop_node_count,
                  txop_claim_table_unpacked,
+                 plca_tx_beacon,
 
                  mod_148_8_state,
                  dplca_aging
@@ -48,6 +49,7 @@ input[7:0]       local_nodeID;
 input[7:0]       dplca_txop_id;
 input[7:0]       dplca_txop_node_count;
 input[511:0]     txop_claim_table_unpacked;
+input            plca_tx_beacon;
 
 output[2:0]      mod_148_8_state;
 output           dplca_aging;
@@ -110,7 +112,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, CRS, COL, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca.mod_inst_148_4_7_func.HARD_CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_change, plca.mod_inst_148_4_7_func.SOFT_CLAIMING_change)
+always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, CRS, COL, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca_tx_beacon, plca.mod_inst_148_4_7_func.HARD_CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_change, plca.mod_inst_148_4_7_func.SOFT_CLAIMING_change)
 
 begin
 
@@ -156,11 +158,11 @@ begin
         begin
             next_mod_148_8_state <= REDUCE_NODE_COUNT;
         end
-        if((tx_cmd == BEACON))
+        if(plca_tx_beacon)
         begin
-            next_mod_148_8_state <= LOOPBACK;
+            next_mod_148_8_state <= COORDINATOR;
         end
-        if(( dplca_txop_table_upd && plca.mod_inst_148_4_7_func.HARD_CLAIMING(0) ) || (rx_cmd == BEACON))
+        if(( dplca_txop_table_upd && plca.mod_inst_148_4_7_func.HARD_CLAIMING(0) ) || ( (rx_cmd == BEACON) && (!plca_tx_beacon) ))
         begin
             next_mod_148_8_state <= LEARNING;
         end
