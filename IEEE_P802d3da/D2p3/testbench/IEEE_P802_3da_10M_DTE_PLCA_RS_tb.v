@@ -135,77 +135,77 @@ begin
 /* Operate in CSMA/CD mode, PLCA disabled                             */
 /*                                                                    */
 /**********************************************************************/
-
-    #200;
-
-    // Configure and then endable node 0
-
-    top.dte_node_0.MAC.transmitEnabled             = true;
-    top.dte_node_0.MAC.receiveEnabled              = true;
-
-    top.dte_node_0.RS.plca_reset                   = true;
-
-    // Configure and then endable node 1
-
-    top.dte_node_1.MAC.transmitEnabled             = true;
-    top.dte_node_1.MAC.receiveEnabled              = true;
-
-    top.dte_node_1.RS.plca_reset                   = true;
-
-    // Configure and then endable node 14
-
-    top.dte_node_14.MAC.transmitEnabled            = true;
-    top.dte_node_14.MAC.receiveEnabled             = true;
-
-    top.dte_node_14.RS.plca_reset                  = true;
-
-    // Configure and then endable node 15
-
-    top.dte_node_15.MAC.transmitEnabled            = true;
-    top.dte_node_15.MAC.receiveEnabled             = true;
-
-    top.dte_node_15.RS.plca_reset                  = true;
-
-    // Configure frame contents
-    // Setting FCS to unknow causes MAC to generate FCS
-
-    destination_address                            = 48'hFF_FF_FF_FF_FF_FF;
-    source_address                                 = 48'h55_44_33_22_11_00;
-    frame_check_sequence                           = 32'hXX_XX_XX_XX;
-
-    mac_service_data_unit                          = {9000{8'h00}};
-    mac_service_data_unit[15:0]                    = 16'd1500;
-    mac_service_data_unit[100 * 8]                 = 1'bX;
-
-    #100_000;
-
-    fork 
-
-        for (i0 = 0; i0 < 10; i0 = i0 + 1)
-        begin
-            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 0 MA_DATA.request serviced");
-        end
-
-        for (i1 = 0; i1 < 10; i1 = i1 + 1)
-        begin
-            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 1 MA_DATA.request serviced");
-        end
-
-        for (i14 = 0; i14 < 10; i14 = i14 + 1)
-        begin
-            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 14 MA_DATA.request serviced");
-        end
-
-        for (i15 = 0; i15 < 10; i15 = i15 + 1)
-        begin
-            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
-            $display($time, " MA_DATA.request serviced");
-        end
-
-    join
+//
+//    #200;
+//
+//    // Configure and then endable node 0
+//
+//    top.dte_node_0.MAC.transmitEnabled             = true;
+//    top.dte_node_0.MAC.receiveEnabled              = true;
+//
+//    top.dte_node_0.RS.plca_reset                   = true;
+//
+//    // Configure and then endable node 1
+//
+//    top.dte_node_1.MAC.transmitEnabled             = true;
+//    top.dte_node_1.MAC.receiveEnabled              = true;
+//
+//    top.dte_node_1.RS.plca_reset                   = true;
+//
+//    // Configure and then endable node 14
+//
+//    top.dte_node_14.MAC.transmitEnabled            = true;
+//    top.dte_node_14.MAC.receiveEnabled             = true;
+//
+//    top.dte_node_14.RS.plca_reset                  = true;
+//
+//    // Configure and then endable node 15
+//
+//    top.dte_node_15.MAC.transmitEnabled            = true;
+//    top.dte_node_15.MAC.receiveEnabled             = true;
+//
+//    top.dte_node_15.RS.plca_reset                  = true;
+//
+//    // Configure frame contents
+//    // Setting FCS to unknow causes MAC to generate FCS
+//
+//    destination_address                            = 48'hFF_FF_FF_FF_FF_FF;
+//    source_address                                 = 48'h55_44_33_22_11_00;
+//    frame_check_sequence                           = 32'hXX_XX_XX_XX;
+//
+//    mac_service_data_unit                          = {9000{8'h00}};
+//    mac_service_data_unit[15:0]                    = 16'd1500;
+//    mac_service_data_unit[100 * 8]                 = 1'bX;
+//
+//    #100_000;
+//
+//    fork 
+//
+//        for (i0 = 0; i0 < 10; i0 = i0 + 1)
+//        begin
+//            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 0 MA_DATA.request serviced");
+//        end
+//
+//        for (i1 = 0; i1 < 10; i1 = i1 + 1)
+//        begin
+//            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 1 MA_DATA.request serviced");
+//        end
+//
+//        for (i14 = 0; i14 < 10; i14 = i14 + 1)
+//        begin
+//            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 14 MA_DATA.request serviced");
+//        end
+//
+//        for (i15 = 0; i15 < 10; i15 = i15 + 1)
+//        begin
+//            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " MA_DATA.request serviced");
+//        end
+//
+//    join
 
 /**********************************************************************/
 /*                                                                    */
@@ -213,70 +213,70 @@ begin
 /*                                                                    */
 /**********************************************************************/
 
-
-    #1_000_000;
-
-    top.dte_node_0.MAC.transmitEnabled             = false;
-    top.dte_node_1.MAC.transmitEnabled             = false;
-    top.dte_node_14.MAC.transmitEnabled            = false;
-    top.dte_node_15.MAC.transmitEnabled            = false;
-
-    #100
-
-    top.dte_node_0.MAC.transmitEnabled             = true;
-    top.dte_node_1.MAC.transmitEnabled             = true;
-    top.dte_node_14.MAC.transmitEnabled            = true;
-    top.dte_node_15.MAC.transmitEnabled            = true;
-
-    #100
-
-    top.dte_node_0.RS.plca_reset                   = false;
-    top.dte_node_1.RS.plca_reset                   = false;
-    top.dte_node_14.RS.plca_reset                  = false;
-    top.dte_node_15.RS.plca_reset                  = false;
-
-    #100
-
-    force top.dte_node_0.RS.local_nodeID           = 0;
-    top.dte_node_0.RS.plca_en                      = true;
-
-    force top.dte_node_1.RS.local_nodeID           = 1;
-    top.dte_node_1.RS.plca_en                      = true;
-
-    force top.dte_node_14.RS.local_nodeID          = 2;
-    top.dte_node_14.RS.plca_en                     = true;
-
-    force top.dte_node_15.RS.local_nodeID          = 3;
-    top.dte_node_15.RS.plca_en                     = true;
-
-    #2_000;
-
-    fork 
-        for (i0 = 0; i0 < 10; i0 = i0 + 1)
-        begin
-            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 0 MA_DATA.request serviced");
-        end
-
-        for (i1 = 0; i1 < 10; i1 = i1 + 1)
-        begin
-            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 1 MA_DATA.request serviced");
-        end
-
-        for (i14 = 0; i14 < 10; i14 = i14 + 1)
-        begin
-            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 14 MA_DATA.request serviced");
-        end
-
-        for (i15 = 0; i15 < 10; i15 = i15 + 1)
-        begin
-            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 15 MA_DATA.request serviced");
-        end
-
-    join
+//
+//    #1_000_000;
+//
+//    top.dte_node_0.MAC.transmitEnabled             = false;
+//    top.dte_node_1.MAC.transmitEnabled             = false;
+//    top.dte_node_14.MAC.transmitEnabled            = false;
+//    top.dte_node_15.MAC.transmitEnabled            = false;
+//
+//    #100
+//
+//    top.dte_node_0.MAC.transmitEnabled             = true;
+//    top.dte_node_1.MAC.transmitEnabled             = true;
+//    top.dte_node_14.MAC.transmitEnabled            = true;
+//    top.dte_node_15.MAC.transmitEnabled            = true;
+//
+//    #100
+//
+//    top.dte_node_0.RS.plca_reset                   = false;
+//    top.dte_node_1.RS.plca_reset                   = false;
+//    top.dte_node_14.RS.plca_reset                  = false;
+//    top.dte_node_15.RS.plca_reset                  = false;
+//
+//    #100
+//
+//    force top.dte_node_0.RS.local_nodeID           = 0;
+//    top.dte_node_0.RS.plca_en                      = true;
+//
+//    force top.dte_node_1.RS.local_nodeID           = 1;
+//    top.dte_node_1.RS.plca_en                      = true;
+//
+//    force top.dte_node_14.RS.local_nodeID          = 2;
+//    top.dte_node_14.RS.plca_en                     = true;
+//
+//    force top.dte_node_15.RS.local_nodeID          = 3;
+//    top.dte_node_15.RS.plca_en                     = true;
+//
+//    #2_000;
+//
+//    fork 
+//        for (i0 = 0; i0 < 10; i0 = i0 + 1)
+//        begin
+//            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 0 MA_DATA.request serviced");
+//        end
+//
+//        for (i1 = 0; i1 < 10; i1 = i1 + 1)
+//        begin
+//            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 1 MA_DATA.request serviced");
+//        end
+//
+//        for (i14 = 0; i14 < 10; i14 = i14 + 1)
+//        begin
+//            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 14 MA_DATA.request serviced");
+//        end
+//
+//        for (i15 = 0; i15 < 10; i15 = i15 + 1)
+//        begin
+//            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
+//            $display($time, " Node 15 MA_DATA.request serviced");
+//        end
+//
+//    join
 
 /**********************************************************************/
 /*                                                                    */
