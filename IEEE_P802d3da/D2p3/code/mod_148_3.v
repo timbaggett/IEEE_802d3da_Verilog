@@ -243,11 +243,11 @@ begin
 
     COMMIT_STATE:
     begin
-        if(COL && (!TX_EN) && packetPending)
-        begin
-            next_mod_148_3_state <= !COMMIT_STATE;
-            next_mod_148_3_state <= COMMIT_STATE;
-        end
+//        if(COL && (!TX_EN) && packetPending)
+//        begin
+//            next_mod_148_3_state <= !COMMIT_STATE;
+//            next_mod_148_3_state <= COMMIT_STATE;
+//        end
         if(TX_EN)
         begin
             next_mod_148_3_state <= TRANSMIT;
