@@ -124,6 +124,15 @@ reg[15:0]        soft_aging_cycles;
 /*                                                                    */
 reg[15:0]        hard_aging_cycles;
 /*                                                                    */
+/* dplca_min_node_count                                               */
+/*                                                                    */
+/* ID representing the  minimum PLCA transmit opportunity number      */
+/* allowed by the D-PLCA Coordinator.                                 */
+/* This signal maps to aDPLCAMinNodeCount.                            */
+/*                                                                    */
+reg[7:0]         dplca_min_node_count;
+
+/*                                                                    */
 /**********************************************************************/
 
 /*                                                                    */
@@ -769,6 +778,7 @@ mod_148_8 mod_inst_148_8(
                  .txop_claim_table_unpacked(txop_claim_table_unpacked),
                  .CRS(CRS),
                  .COL(COL),
+                 .dplca_min_node_count(dplca_min_node_count),
 
                  .mod_148_8_state(mod_148_8_state),
                  .dplca_aging(dplca_aging),

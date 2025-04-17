@@ -27,6 +27,7 @@ module           mod_148_8(
                  dplca_txop_node_count,
                  txop_claim_table_unpacked,
                  plca_tx_beacon,
+                 dplca_min_node_count,
 
                  mod_148_8_state,
                  dplca_aging
@@ -50,6 +51,7 @@ input[7:0]       dplca_txop_id;
 input[7:0]       dplca_txop_node_count;
 input[511:0]     txop_claim_table_unpacked;
 input            plca_tx_beacon;
+input[7:0]       dplca_min_node_count;
 
 output[2:0]      mod_148_8_state;
 output           dplca_aging;
@@ -154,7 +156,7 @@ begin
 
     COORDINATOR:
     begin
-        if((!plca.mod_inst_148_4_7_func.HARD_CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && (!plca.mod_inst_148_4_7_func.HARD_CLAIMING(plca_node_count - 1)) && (plca_node_count > 8) && dplca_new_age)
+        if((!plca.mod_inst_148_4_7_func.HARD_CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && (!plca.mod_inst_148_4_7_func.HARD_CLAIMING(plca_node_count - 1)) && (plca_node_count > dplca_min_node_count) && dplca_new_age)
         begin
             next_mod_148_8_state <= REDUCE_NODE_COUNT;
         end
@@ -248,7 +250,7 @@ begin
     WAIT_BEACON:
     begin
         plca.local_nodeID = 255;
-        plca.plca_node_count = 8;
+        plca.plca_node_count = dplca_min_node_count;
     end
 
     COORDINATOR:
