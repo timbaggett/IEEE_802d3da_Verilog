@@ -13,33 +13,6 @@
 
 /**********************************************************************/
 /*                                                                    */
-/* CLEAR_SOFT_CLAIMS_task task                                        */
-/*                                                                    */
-/**********************************************************************/
-
-task          CLEAR_SOFT_CLAIMS_task;
-input         table_name;
-integer       i;
-begin
-    
-    for(i = 0; i <= 255; i = i + 1)
-    begin
-        if(table_name == CLAIM_TABLE && plca.txop_claim_table[i] == SOFT)
-        begin
-            plca.txop_claim_table[i] = NONE;
-        end
-        if(table_name == CLAIM_TABLE_NEW && plca.txop_claim_table_new[i] == SOFT)
-        begin
-            plca.txop_claim_table_new[i] = NONE;
-        end
-    end
-
-end
-endtask
-
-
-/**********************************************************************/
-/*                                                                    */
 /* CLEAR_TXOP_TABLE_task task                                         */
 /*                                                                    */
 /**********************************************************************/
@@ -150,7 +123,7 @@ endfunction
 /**********************************************************************/
 /*                                                                    */
 /* This function takes as  parameter the txop_claim_table  defined in */
-/* 148.4.7.2.  It returns any ID  that  is not marked as HARD or SOFT */
+/* 148.4.7.2.  It returns any ID  that  is not marked as HARD         */
 /* claimed in the table, with the following exceptions:               */
 /*                                                                    */
 /* a. it  shall  not  return  zero, which is  reserved  for the  PLCA */
@@ -183,28 +156,6 @@ begin
         end
     end
     // $display("time = %0t %m PICK_FREE_TXOP_function = 0x%0h", $time, PICK_FREE_TXOP_function);
-
-end
-endfunction
-
-
-/**********************************************************************/
-/*                                                                    */
-/* SOFT_CLAIMING function                                             */
-/*                                                                    */
-/* This  function  takes as  parameter “ID”,  a transmit  opportunity */
-/* integer number in the range of 0  to 255. It returns the result of */
-/* the following boolean expression:                                  */
-/*  dplca_txop_end * (dplca_txop_claim = SOFT) * (dplca_txop_id = ID) */
-/*                                                                    */
-/**********************************************************************/
-
-function      automatic SOFT_CLAIMING_function;
-input[7:0]    nodeID;
-
-begin
-
-    SOFT_CLAIMING_function = plca.dplca_txop_end * (plca.dplca_txop_claim == SOFT) * (plca.dplca_txop_id == nodeID);
 
 end
 endfunction

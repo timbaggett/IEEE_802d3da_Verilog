@@ -107,15 +107,6 @@ reg              dplca_en;
 /*                                                                    */
 reg              coordinator_role_allowed;
 /*                                                                    */
-/*                                                                    */
-/* soft_aging_cycles                                                  */
-/*                                                                    */
-/* Defines  the number of BEACON cycles before the  SOFT claims  over */
-/* the  transmit  opportunities expire.  This variable  maps  to  the */
-/* aDPLCASoftAgingCycles attribute defined in 30.16.1.1.8.            */
-/*                                                                    */
-reg[15:0]        soft_aging_cycles;
-/*                                                                    */
 /* hard_aging_cycles                                                  */
 /*                                                                    */
 /* Defines the number  of BEACON cycles  before the HARD claims  over */
@@ -133,15 +124,11 @@ reg[15:0]        hard_aging_cycles;
 /* opportunities IDs. The claim state of each ID can be:              */
 /* NONE,  meaning that the transmit opportunity ID is available to be */
 /* returned by the pick_free_txop function.                           */
-/* SOFT, meaning  the ID is currently  claimed by a node transmission */
-/* that did not include a COMMIT indication.                          */
-/* HARD, meaning  the ID  is currently claimed by a node transmission */
-/* that included  a COMMIT indication at the beginning or at  the end */
-/* of the carrier event.                                              */
+/* HARD, meaning  the ID  is currently claimed by a node transmission.*/
 /* The  transmit opportunity table is maintained by  the D-PLCA aging */
 /* state diagram defined in Figure 148–9.                             */
 /*                                                                    */
-/* Values: Array of 256 elements,  each having a value of  NONE, SOFT */
+/* Values: Array of 256 elements,  each having a value of  NONE       */
 /* or HARD.                                                           */
 /*                                                                    */
 
@@ -809,7 +796,6 @@ begin : txop_claim_table_unpack
     begin
         casex(txop_claim_table_location)
             RS.mod_inst_148_8.NONE : ASCII = "NONE";
-            RS.mod_inst_148_8.SOFT : ASCII = "SOFT";
             RS.mod_inst_148_8.HARD : ASCII = "HARD";
             default :                ASCII = "XXXX ";
         endcase
@@ -836,7 +822,6 @@ begin : txop_claim_table_new_unpack
     begin
         casex(txop_claim_table_new_location)
             RS.mod_inst_148_8.NONE : ASCII = "NONE";
-            RS.mod_inst_148_8.SOFT : ASCII = "SOFT";
             RS.mod_inst_148_8.HARD : ASCII = "HARD";
             default :                ASCII = "XXXX ";
         endcase
@@ -853,7 +838,6 @@ mod_148_9 mod_inst_148_9(
                  .txop_claim_table_unpacked(txop_claim_table_unpacked),
                  .txop_claim_table_new_unpacked(txop_claim_table_new_unpacked),
                  .dplca_txop_id(dplca_txop_id),
-                 .soft_aging_cycles(soft_aging_cycles),
                  .hard_aging_cycles(hard_aging_cycles),
 
                  .mod_148_9_state(mod_148_9_state),

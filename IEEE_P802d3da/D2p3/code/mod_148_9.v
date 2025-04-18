@@ -15,7 +15,6 @@ module           mod_148_9(
                  dplca_txop_id,
                  txop_claim_table_unpacked,
                  txop_claim_table_new_unpacked,
-                 soft_aging_cycles,
                  hard_aging_cycles,
 
                  mod_148_9_state,
@@ -31,7 +30,6 @@ input[1:0]       dplca_txop_claim;
 input[7:0]       dplca_txop_id;
 input[511:0]     txop_claim_table_unpacked;
 input[511:0]     txop_claim_table_new_unpacked;
-input[15:0]      soft_aging_cycles;
 input[15:0]      hard_aging_cycles;
 
 output[2:0]      mod_148_9_state;
@@ -113,7 +111,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, soft_aging_cycles, hard_aging_cycles)
+always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, hard_aging_cycles)
 
 begin
 
@@ -260,7 +258,6 @@ initial          dplca_txop_claim_ASCII = "- X -";
 always@(dplca_txop_claim)
 begin
     case(dplca_txop_claim)
-        2'b00 : dplca_txop_claim_ASCII = "SOFT";
         2'b01 : dplca_txop_claim_ASCII = "HARD";
         2'b10 : dplca_txop_claim_ASCII = "NONE";
         default : dplca_txop_claim_ASCII = "- X -";

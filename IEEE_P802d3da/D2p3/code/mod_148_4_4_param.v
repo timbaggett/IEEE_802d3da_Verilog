@@ -11,7 +11,6 @@
 // dplca_txop_claim
 // ----------------
 
-parameter        SOFT                =  2'b00;
 parameter        HARD                =  2'b01;
 //parameter      NONE                =  2'b10;
 

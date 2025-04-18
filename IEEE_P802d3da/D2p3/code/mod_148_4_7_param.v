@@ -18,7 +18,6 @@ parameter        ON                  =  1'b1;
 // dplca_txop_claim
 // ----------------
 
-//parameter      SOFT                =  2'b00;
 //parameter      HARD                =  2'b01;
 //parameter      NONE                =  2'b10;
 
@@ -41,7 +40,6 @@ parameter        COMMIT              =  2'b01;
 // txop_claim_table
 // ----------------
 
-//parameter      SOFT                =  2'b00;
 //parameter      HARD                =  2'b01;
 //parameter      NONE                =  2'b10;
 
@@ -49,7 +47,6 @@ parameter        COMMIT              =  2'b01;
 // txop_claim_table_new
 // --------------------
 
-parameter        SOFT                =  2'b00;
 parameter        HARD                =  2'b01;
 parameter        NONE                =  2'b10;
 

@@ -112,7 +112,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, CRS, COL, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca_tx_beacon, plca.mod_inst_148_4_7_func.HARD_CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_change, plca.mod_inst_148_4_7_func.SOFT_CLAIMING_change)
+always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, CRS, COL, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca_tx_beacon, plca.mod_inst_148_4_7_func.HARD_CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_change)
 
 begin
 

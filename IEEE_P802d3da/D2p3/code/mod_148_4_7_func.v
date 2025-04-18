@@ -8,16 +8,13 @@
 /**********************************************************************/
 
 module           mod_148_4_7_func(
-                 CLEAR_SOFT_CLAIMS_done,
                  CLEAR_TXOP_TABLE_done,
                  mod_148_9_ARRAY_ASSIGN_$D$11_done
                  );
 
-output           CLEAR_SOFT_CLAIMS_done;
 output           CLEAR_TXOP_TABLE_done;
 output           mod_148_9_ARRAY_ASSIGN_$D$11_done;
 
-reg              CLEAR_SOFT_CLAIMS_done;
 reg              CLEAR_TXOP_TABLE_done;
 reg              mod_148_9_ARRAY_ASSIGN_$D$11_done;
 
@@ -26,28 +23,6 @@ reg              mod_148_9_ARRAY_ASSIGN_$D$11_done;
 `include "IEEE_P802_3da_param.v"
 `include "mod_148_4_7_param.v"
 `include "mod_148_4_7_func_include.v"
-
-
-/**********************************************************************/
-/*                                                                    */
-/* CLEAR_SOFT_CLAIMS task                                             */
-/*                                                                    */
-/**********************************************************************/
-
-task          CLEAR_SOFT_CLAIMS;
-input         table_name;
-begin
-    CLEAR_SOFT_CLAIMS_done = false;
-    plca.mod_inst_148_4_7_func.CLEAR_SOFT_CLAIMS_task(table_name);
-end
-endtask
-
-event         CLEAR_SOFT_CLAIMS_task_done;
-
-always @(CLEAR_SOFT_CLAIMS_task_done)
-begin
-    CLEAR_SOFT_CLAIMS_done = true;
-end
 
 
 /**********************************************************************/
@@ -153,29 +128,6 @@ input         null_value;
 begin
 
     PICK_FREE_TXOP = plca.mod_inst_148_4_7_func.PICK_FREE_TXOP_function(null_value);
-
-end
-endfunction
-
-/**********************************************************************/
-/*                                                                    */
-/* SOFT_CLAIMING function                                             */
-/*                                                                    */
-/* Used  as  a  state  exit  condition so the action [name]_change is */
-/* included in the state diagram sensitivity list. The action must be */
-/* triggered every time there is a change in value.                   */
-/*                                                                    */
-/**********************************************************************/
-
-event         SOFT_CLAIMING_change;
-
-function      automatic SOFT_CLAIMING;
-input[7:0]    nodeID;
-begin
-
-    SOFT_CLAIMING = plca.mod_inst_148_4_7_func.SOFT_CLAIMING_function(nodeID);
-
-    -> SOFT_CLAIMING_change;
 
 end
 endfunction
