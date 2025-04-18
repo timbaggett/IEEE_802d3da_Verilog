@@ -226,24 +226,25 @@ begin
             begin
                 plca.mod_inst_148_4_7_func.CLEAR_SOFT_CLAIMS(CLAIM_TABLE);
                 plca.mod_inst_148_4_7_func.CLEAR_SOFT_CLAIMS(CLAIM_TABLE_NEW);
-            short_cnt = 0;
+                short_cnt = 0;
             end
-        else
-        begin
+            else
+            begin
                 short_cnt = short_cnt + 1;
             end
+
             if( long_cnt == hard_aging_cycles)
             begin
                 plca.mod_inst_148_4_7_func.mod_148_9_ARRAY_ASSIGN_$D$11();
                 plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE_NEW);
                 dplca_new_age = TRUE;
                 long_cnt = 0;
-                end
+            end
             else
             begin
-                    long_cnt = long_cnt + 1;
-                end
+                long_cnt = long_cnt + 1;
             end
+        end
     end
 
     UPDATE_SOFT:
