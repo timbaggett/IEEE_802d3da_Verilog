@@ -54,9 +54,8 @@ reg              dplca_txop_table_upd;
 parameter        DISABLED            =  3'b000;
 parameter        WAIT_TXOP_END       =  3'b001;
 parameter        TXOP_END            =  3'b010;
-parameter        UPDATE_SOFT         =  3'b011;
-parameter        UPDATE_HARD         =  3'b100;
-parameter        NOTIFY              =  3'b101;
+parameter        UPDATE_HARD         =  3'b011;
+parameter        NOTIFY              =  3'b100;
 
 /*                                                                    */
 /* Pack multidimensional arrays                                       */
@@ -148,22 +147,11 @@ begin
 
     TXOP_END:
     begin
-        if(dplca_txop_claim == SOFT)
-        begin
-            next_mod_148_9_state <= UPDATE_SOFT;
-        end
         if(dplca_txop_claim == HARD)
         begin
             next_mod_148_9_state <= UPDATE_HARD;
         end
         if(dplca_txop_claim == NONE)
-        begin
-            next_mod_148_9_state <= NOTIFY;
-        end
-    end
-
-    UPDATE_SOFT:
-    begin
         begin
             next_mod_148_9_state <= NOTIFY;
         end
@@ -222,40 +210,18 @@ begin
     begin
         if( dplca_txop_id == 0)
         begin
-            if( short_cnt == soft_aging_cycles)
-            begin
-                plca.mod_inst_148_4_7_func.CLEAR_SOFT_CLAIMS(CLAIM_TABLE);
-                plca.mod_inst_148_4_7_func.CLEAR_SOFT_CLAIMS(CLAIM_TABLE_NEW);
-            short_cnt = 0;
-            end
-        else
-        begin
-                short_cnt = short_cnt + 1;
-            end
             if( long_cnt == hard_aging_cycles)
             begin
                 plca.mod_inst_148_4_7_func.mod_148_9_ARRAY_ASSIGN_$D$11();
                 plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE_NEW);
                 dplca_new_age = TRUE;
                 long_cnt = 0;
-                end
+            end
             else
             begin
-                    long_cnt = long_cnt + 1;
-                end
+                long_cnt = long_cnt + 1;
             end
-    end
-
-    UPDATE_SOFT:
-    begin
-        if( txop_claim_table[dplca_txop_id] == NONE)
-        begin
-            plca.txop_claim_table[dplca_txop_id] = SOFT;
-        end
-        if( txop_claim_table_new[dplca_txop_id] == NONE)
-        begin
-            plca.txop_claim_table_new[dplca_txop_id] = SOFT;
-        end
+            end
     end
 
     UPDATE_HARD:
@@ -310,9 +276,8 @@ begin
         3'b000 : mod_148_9_state_ASCII = "DISABLED";
         3'b001 : mod_148_9_state_ASCII = "WAIT_TXOP_END";
         3'b010 : mod_148_9_state_ASCII = "TXOP_END";
-        3'b011 : mod_148_9_state_ASCII = "UPDATE_SOFT";
-        3'b100 : mod_148_9_state_ASCII = "UPDATE_HARD";
-        3'b101 : mod_148_9_state_ASCII = "NOTIFY";
+        3'b011 : mod_148_9_state_ASCII = "UPDATE_HARD";
+        3'b100 : mod_148_9_state_ASCII = "NOTIFY";
         default : mod_148_9_state_ASCII = "- X -";
     endcase
 end

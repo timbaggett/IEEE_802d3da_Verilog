@@ -243,11 +243,6 @@ begin
 
     COMMIT_STATE:
     begin
-        if(COL && (!TX_EN) && packetPending)
-        begin
-            next_mod_148_3_state <= !COMMIT_STATE;
-            next_mod_148_3_state <= COMMIT_STATE;
-        end
         if(TX_EN)
         begin
             next_mod_148_3_state <= TRANSMIT;
@@ -290,7 +285,7 @@ begin
             next_mod_148_3_state <= !TRANSMIT;
             next_mod_148_3_state <= TRANSMIT;
         end
-        if((!TX_EN) && ((bc < max_bc) || dplca_en))
+        if((!TX_EN) && (bc < max_bc))
         begin
             next_mod_148_3_state <= BURST;
         end
@@ -302,11 +297,11 @@ begin
 
     BURST:
     begin
-        if(TX_EN && (max_bc > 0))
+        if(TX_EN)
         begin
             next_mod_148_3_state <= TRANSMIT;
         end
-        if((!TX_EN) && (burst_timer_done || append_commit_timer_done))
+        if((!TX_EN) && burst_timer_done)
         begin
             next_mod_148_3_state <= ABORT;
         end
@@ -406,7 +401,6 @@ begin
     begin
         -> plca.mod_inst_148_4_4_timer.to_timer.stop;
         -> plca.mod_inst_148_4_4_timer.beacon_det_timer.start;
-        dplca_txop_claim = SOFT;
     end
 
     COMMIT_STATE:
@@ -415,10 +409,6 @@ begin
         committed = TRUE;
         -> plca.mod_inst_148_4_4_timer.to_timer.stop;
         bc = 0;
-        if( COL)
-        begin
-            dplca_txop_claim = SOFT;
-        end
     end
 
     RECEIVE:
@@ -436,24 +426,13 @@ begin
         begin
             committed = FALSE;
         end
-        if( COL)
-        begin
-            dplca_txop_claim = SOFT;
-        end
     end
 
     BURST:
     begin
         bc = bc + 1;
         tx_cmd = COMMIT;
-        if( max_bc > 0)
-        begin
-            -> plca.mod_inst_148_4_4_timer.burst_timer.start;
-            end
-        else
-        begin
-                -> plca.mod_inst_148_4_4_timer.append_commit_timer.start;
-            end
+        -> plca.mod_inst_148_4_4_timer.burst_timer.start;
     end
 
     NEXT_TX_OPPORTUNITY:
