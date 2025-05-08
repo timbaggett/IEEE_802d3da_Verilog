@@ -748,7 +748,7 @@ mod_148_4_7_timer mod_inst_148_4_7_timer(
                 .loopback_timer_done(loopback_timer_done)
                  );
 
-wire[2:0]        mod_148_8_state;
+wire[3:0]        mod_148_8_state;
 wire             dplca_aging;
 
 mod_148_8 mod_inst_148_8(

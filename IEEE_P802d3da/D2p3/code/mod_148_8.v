@@ -49,25 +49,26 @@ input[7:0]       dplca_txop_id;
 input[7:0]       dplca_txop_node_count;
 input[511:0]     txop_claim_table_unpacked;
 
-output[2:0]      mod_148_8_state;
+output[3:0]      mod_148_8_state;
 output           dplca_aging;
 
-reg[2:0]         mod_148_8_state;
-reg[2:0]         next_mod_148_8_state;
+reg[3:0]         mod_148_8_state;
+reg[3:0]         next_mod_148_8_state;
 reg              dplca_aging;
 
 `ifdef simulate
 `include "IEEE_P802_3da_param.v"
 `include "mod_148_4_7_param.v"
 
-parameter        DISABLED            =  3'b000;
-parameter        WAIT_BEACON         =  3'b001;
-parameter        COORDINATOR         =  3'b010;
-parameter        REDUCE_NODE_COUNT   =  3'b011;
-parameter        LOOPBACK            =  3'b100;
-parameter        LEARNING            =  3'b101;
-parameter        INCREASE_NODE_COUNT =  3'b110;
-parameter        FOLLOWER            =  3'b111;
+parameter        DISABLED            =  4'b0000;
+parameter        WAIT_BEACON         =  4'b0001;
+parameter        COORDINATOR         =  4'b0010;
+parameter        REDUCE_NODE_COUNT   =  4'b0011;
+parameter        LOOPBACK_TX         =  4'b0100;
+parameter        LOOPBACK_RX         =  4'b0101;
+parameter        LEARNING            =  4'b0110;
+parameter        INCREASE_NODE_COUNT =  4'b0111;
+parameter        FOLLOWER            =  4'b1000;
 
 /*                                                                    */
 /* Pack multidimensional arrays                                       */
@@ -158,7 +159,7 @@ begin
         end
         if((tx_cmd == BEACON))
         begin
-            next_mod_148_8_state <= LOOPBACK;
+            next_mod_148_8_state <= LOOPBACK_TX;
         end
         if(( dplca_txop_table_upd && plca.mod_inst_148_4_7_func.HARD_CLAIMING(0) ) || (rx_cmd == BEACON))
         begin
@@ -178,9 +179,17 @@ begin
         end
     end
 
-    LOOPBACK:
+    LOOPBACK_TX:
     begin
-        if((tx_cmd != BEACON) && (rx_cmd != BEACON) && (!CRS) && (!COL)) // Fix to prevent infinite loop.
+        if((rx_cmd == BEACON))
+        begin
+            next_mod_148_8_state <= LOOPBACK_RX;
+        end
+    end
+
+    LOOPBACK_RX:
+    begin
+        if((rx_cmd != BEACON))
         begin
             next_mod_148_8_state <= COORDINATOR;
         end
@@ -327,14 +336,15 @@ initial           mod_148_8_state_ASCII = "- X -";
 always@(mod_148_8_state)
 begin
     case(mod_148_8_state)
-        3'b000 : mod_148_8_state_ASCII = "DISABLED";
-        3'b001 : mod_148_8_state_ASCII = "WAIT_BEACON";
-        3'b010 : mod_148_8_state_ASCII = "COORDINATOR";
-        3'b011 : mod_148_8_state_ASCII = "REDUCE_NODE_COUNT";
-        3'b100 : mod_148_8_state_ASCII = "LOOPBACK";
-        3'b101 : mod_148_8_state_ASCII = "LEARNING";
-        3'b110 : mod_148_8_state_ASCII = "INCREASE_NODE_COUNT";
-        3'b111 : mod_148_8_state_ASCII = "FOLLOWER";
+        4'b0000 : mod_148_8_state_ASCII = "DISABLED";
+        4'b0001 : mod_148_8_state_ASCII = "WAIT_BEACON";
+        4'b0010 : mod_148_8_state_ASCII = "COORDINATOR";
+        4'b0011 : mod_148_8_state_ASCII = "REDUCE_NODE_COUNT";
+        4'b0100 : mod_148_8_state_ASCII = "LOOPBACK_TX";
+        4'b0101 : mod_148_8_state_ASCII = "LOOPBACK_RX";
+        4'b0110 : mod_148_8_state_ASCII = "LEARNING";
+        4'b0111 : mod_148_8_state_ASCII = "INCREASE_NODE_COUNT";
+        4'b1000 : mod_148_8_state_ASCII = "FOLLOWER";
         default : mod_148_8_state_ASCII = "- X -";
     endcase
 end
