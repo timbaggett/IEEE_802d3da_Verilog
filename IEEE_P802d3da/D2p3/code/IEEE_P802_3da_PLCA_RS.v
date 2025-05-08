@@ -586,7 +586,6 @@ wire             dplca_txop_end;
 wire[7:0]        dplca_txop_id;
 wire[7:0]        dplca_txop_node_count;
 wire[7:0]        bc;
-wire             plca_tx_beacon;
 
 
 wire             commit_timer_done;
@@ -663,8 +662,7 @@ mod_148_3 mod_inst_148_3(
                  .dplca_txop_end(dplca_txop_end),
                  .dplca_txop_id(dplca_txop_id),
                  .dplca_txop_node_count(dplca_txop_node_count),
-                 .bc(bc),
-                 .plca_tx_beacon(plca_tx_beacon)
+                 .bc(bc)
                  );
 
 
@@ -737,7 +735,7 @@ mod_148_4_7_timer mod_inst_148_4_7_timer(
                 .loopback_timer_done(loopback_timer_done)
                  );
 
-wire[2:0]        mod_148_8_state;
+wire[3:0]        mod_148_8_state;
 wire             dplca_aging;
 
 mod_148_8 mod_inst_148_8(
@@ -754,8 +752,6 @@ mod_148_8 mod_inst_148_8(
                  .dplca_txop_id(dplca_txop_id),
                  .dplca_txop_node_count(dplca_txop_node_count),
                  .txop_claim_table_unpacked(txop_claim_table_unpacked),
-                 .CRS(CRS),
-                 .COL(COL),
 
                  .mod_148_8_state(mod_148_8_state),
                  .dplca_aging(dplca_aging),
