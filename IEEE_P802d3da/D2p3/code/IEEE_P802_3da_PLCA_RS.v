@@ -761,7 +761,6 @@ mod_148_8 mod_inst_148_8(
 
 
 wire[2:0]        mod_148_9_state;
-wire[15:0]       short_cnt;
 wire[15:0]       long_cnt;
 wire             dplca_new_age;
 wire             dplca_txop_table_upd;
@@ -837,7 +836,6 @@ mod_148_9 mod_inst_148_9(
                  .hard_aging_cycles(hard_aging_cycles),
 
                  .mod_148_9_state(mod_148_9_state),
-                 .short_cnt(short_cnt),
                  .long_cnt(long_cnt),
                  .dplca_new_age(dplca_new_age),
                  .dplca_txop_table_upd(dplca_txop_table_upd)

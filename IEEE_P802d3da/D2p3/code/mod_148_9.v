@@ -15,11 +15,9 @@ module           mod_148_9(
                  dplca_txop_id,
                  txop_claim_table_unpacked,
                  txop_claim_table_new_unpacked,
-                 soft_aging_cycles,
                  hard_aging_cycles,
 
                  mod_148_9_state,
-                 short_cnt,
                  long_cnt,
                  dplca_new_age,
                  dplca_txop_table_upd
@@ -31,18 +29,15 @@ input[1:0]       dplca_txop_claim;
 input[7:0]       dplca_txop_id;
 input[511:0]     txop_claim_table_unpacked;
 input[511:0]     txop_claim_table_new_unpacked;
-input[15:0]      soft_aging_cycles;
 input[15:0]      hard_aging_cycles;
 
 output[2:0]      mod_148_9_state;
-output[15:0]     short_cnt;
 output[15:0]     long_cnt;
 output           dplca_new_age;
 output           dplca_txop_table_upd;
 
 reg[2:0]         mod_148_9_state;
 reg[2:0]         next_mod_148_9_state;
-reg[15:0]        short_cnt;
 reg[15:0]        long_cnt;
 reg              dplca_new_age;
 reg              dplca_txop_table_upd;
@@ -113,7 +108,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, soft_aging_cycles, hard_aging_cycles)
+always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, hard_aging_cycles)
 
 begin
 
@@ -194,7 +189,6 @@ begin
     begin
         plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE);
         plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE_NEW);
-        short_cnt = 0;
         long_cnt = 0;
         dplca_new_age = FALSE;
         dplca_txop_table_upd = FALSE;
