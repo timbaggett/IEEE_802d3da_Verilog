@@ -280,11 +280,6 @@ begin
 
     TRANSMIT:
     begin
-        if(COL && (TX_EN || CRS))
-        begin
-            next_mod_148_3_state <= !TRANSMIT;
-            next_mod_148_3_state <= TRANSMIT;
-        end
         if((!TX_EN) && (bc < max_bc))
         begin
             next_mod_148_3_state <= BURST;
