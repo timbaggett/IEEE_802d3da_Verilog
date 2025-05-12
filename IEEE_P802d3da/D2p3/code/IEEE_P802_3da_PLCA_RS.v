@@ -28,14 +28,6 @@ output           TX_ER;
 `ifdef simulate
 `include "IEEE_P802_3da_param.v"
 
-// Fix to block off BEACON loopback
-
-assign loopback_block_raw = (tx_cmd == mod_inst_148_3.BEACON || (loopback_block && (rx_cmd == mod_inst_148_3.BEACON || COL || CRS)));
-
-
-
-assign #10 loopback_block = loopback_block_raw;
-
 /**********************************************************************/
 /*                                                                    */
 /*         PLCA Management and Configuration registers                */
@@ -727,8 +719,7 @@ mod_148_4_7_func mod_inst_148_4_7_func();
 
 mod_148_4_7_timer mod_inst_148_4_7_timer(
                 .wait_beacon_timer_done(wait_beacon_timer_done),
-                .wait_beacon_timer_not_done(wait_beacon_timer_not_done),
-                .loopback_timer_done(loopback_timer_done)
+                .wait_beacon_timer_not_done(wait_beacon_timer_not_done)
                  );
 
 wire[3:0]        mod_148_8_state;
