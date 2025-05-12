@@ -18,8 +18,8 @@ parameter        ON                  =  1'b1;
 // dplca_txop_claim
 // ----------------
 
-//parameter      HARD                =  2'b01;
-//parameter      NONE                =  2'b10;
+parameter        UNCLAIMED           =  2'b00;
+parameter        CLAIMED             =  2'b01;
 
 
 // plca_status
@@ -40,15 +40,15 @@ parameter        COMMIT              =  2'b01;
 // txop_claim_table
 // ----------------
 
-//parameter      HARD                =  2'b01;
-//parameter      NONE                =  2'b10;
+//parameter      UNCLAIMED           =  2'b00;
+//parameter      CLAIMED             =  2'b01;
 
 
 // txop_claim_table_new
 // --------------------
 
-parameter        HARD                =  2'b01;
-parameter        NONE                =  2'b10;
+//parameter      UNCLAIMED           =  2'b00;
+//parameter      CLAIMED             =  2'b01;
 
 
 // table_name

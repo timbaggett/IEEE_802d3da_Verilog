@@ -107,13 +107,13 @@ reg              dplca_en;
 /*                                                                    */
 reg              coordinator_role_allowed;
 /*                                                                    */
-/* hard_aging_cycles                                                  */
+/* aging_cycles                                                       */
 /*                                                                    */
-/* Defines the number  of BEACON cycles  before the HARD claims  over */
-/* the transmit opportunities  expire.  This  variable  maps  to  the */
-/* aDPLCAHardAgingCycles attribute defined in 30.16.1.1.9.            */
+/* Defines the number  of BEACON cycles  before transmit opportunity  */
+/* expire.  This  variable  maps  to  the aDPLCAHardAgingCycles       */
+/* attribute defined in 30.16.1.1.9.                                  */
 /*                                                                    */
-reg[15:0]        hard_aging_cycles;
+reg[15:0]        aging_cycles;
 /*                                                                    */
 /**********************************************************************/
 
@@ -122,14 +122,15 @@ reg[15:0]        hard_aging_cycles;
 /*                                                                    */
 /* This variable  contains  the  claim  state  of  the  256  transmit */
 /* opportunities IDs. The claim state of each ID can be:              */
-/* NONE,  meaning that the transmit opportunity ID is available to be */
-/* returned by the pick_free_txop function.                           */
-/* HARD, meaning  the ID  is currently claimed by a node transmission.*/
+/* UNCLAIMED, meaning that the transmit opportunity ID is available   */
+/* to be returned by the pick_free_txop function.                     */
+/* CLAIMED, meaning  the ID  is currently claimed by a node           */
+/* packet transmission.                                               */
 /* The  transmit opportunity table is maintained by  the D-PLCA aging */
-/* state diagram defined in Figure 148–9.                             */
+/* state diagram defined in Figure 148-9.                             */
 /*                                                                    */
-/* Values: Array of 256 elements,  each having a value of  NONE       */
-/* or HARD.                                                           */
+/* Values: Array of 256 elements,  each having a value of UNCLAIMED   */
+/* or CLAIMED.                                                        */
 /*                                                                    */
 
 reg [1:0] txop_claim_table [255:0];
@@ -139,7 +140,7 @@ reg [1:0] txop_claim_table [255:0];
 /* txop_claim_table_new                                               */
 /*                                                                    */
 /* Copy  of txop_claim_table  used by the D-PLCA Aging  State Diagram */
-/* to handle the expiration of HARD claims.                           */
+/* to handle the expiration of claims.                                */
 /* Values: same as txop_claim_table.                                  */
 /*                                                                    */
 
@@ -158,7 +159,7 @@ end
 /* rx_cmd                                                             */
 /*                                                                    */
 /* Encoding  present  on  RXD<3:0>,  RX_ER, and RX_DV  as  defined in */
-/* Table 22–2.                                                        */
+/* Table 22-2.                                                        */
 /*                                                                    */
 /* BEACON:  PLCA  BEACON  indication  encoding  present on  RXD<3:0>, */
 /* RX_ER, and RX_DV                                                   */
@@ -568,13 +569,11 @@ wire             beacon_det_timer_done;
 wire             invalid_beacon_timer_done;
 wire             burst_timer_done;
 wire             to_timer_done;
-wire             append_commit_timer_done;
 wire             beacon_timer_not_done;
 wire             beacon_det_timer_not_done;
 wire             invalid_beacon_timer_not_done;
 wire             burst_timer_not_done;
 wire             to_timer_not_done;
-wire             append_commit_timer_not_done;
 
 wire[3:0]        mod_148_3_state;
 wire[1:0]        tx_cmd;
@@ -619,13 +618,11 @@ mod_148_4_4_timer mod_inst_148_4_4_timer(
                 .invalid_beacon_timer_done(invalid_beacon_timer_done),
                 .burst_timer_done(burst_timer_done),
                 .to_timer_done(to_timer_done),
-                .append_commit_timer_done(append_commit_timer_done),
                 .beacon_timer_not_done(beacon_timer_not_done),
                 .beacon_det_timer_not_done(beacon_det_timer_not_done),
                 .invalid_beacon_timer_not_done(invalid_beacon_timer_not_done),
                 .burst_timer_not_done(burst_timer_not_done),
-                .to_timer_not_done(to_timer_not_done),
-                .append_commit_timer_not_done(append_commit_timer_not_done)
+                .to_timer_not_done(to_timer_not_done)
                  );
 
 mod_148_3 mod_inst_148_3(
@@ -647,7 +644,6 @@ mod_148_3 mod_inst_148_3(
                  .to_timer_not_done(to_timer_not_done),
                  .max_bc(max_bc),
                  .burst_timer_done(burst_timer_done),
-                 .append_commit_timer_done(append_commit_timer_done),
                  .invalid_beacon_timer_done(invalid_beacon_timer_done),
                  .plca_node_count(plca_node_count),
                  .dplca_txop_table_upd(dplca_txop_table_upd),
@@ -761,7 +757,7 @@ mod_148_8 mod_inst_148_8(
 
 
 wire[2:0]        mod_148_9_state;
-wire[15:0]       long_cnt;
+wire[15:0]       aging_cnt;
 wire             dplca_new_age;
 wire             dplca_txop_table_upd;
 
@@ -782,7 +778,7 @@ wire [511:0] txop_claim_table_unpacked;
 genvar txop_claim_table_index;
 generate for (txop_claim_table_index = 0; txop_claim_table_index < 256; txop_claim_table_index = txop_claim_table_index + 1)
 begin : txop_claim_table_unpack
-    reg[31:0] ASCII;
+    reg[71:0] ASCII;
     wire[1:0] txop_claim_table_location;
     assign txop_claim_table_location = txop_claim_table[txop_claim_table_index];
     assign txop_claim_table_unpacked[((txop_claim_table_index + 1) * 2) - 1 : (txop_claim_table_index * 2)] = txop_claim_table[txop_claim_table_index];
@@ -790,9 +786,9 @@ begin : txop_claim_table_unpack
     always@(txop_claim_table_location)
     begin
         casex(txop_claim_table_location)
-            RS.mod_inst_148_8.NONE : ASCII = "NONE";
-            RS.mod_inst_148_8.HARD : ASCII = "HARD";
-            default :                ASCII = "XXXX ";
+            RS.mod_inst_148_8.UNCLAIMED : ASCII = "UNCLAIMED";
+            RS.mod_inst_148_8.CLAIMED   : ASCII = "CLAIMED";
+            default :                     ASCII = "XXXX ";
         endcase
     end
 
@@ -808,7 +804,7 @@ wire [511:0] txop_claim_table_new_unpacked;
 genvar txop_claim_table_new_index;
 generate for (txop_claim_table_new_index = 0; txop_claim_table_new_index < 256; txop_claim_table_new_index = txop_claim_table_new_index + 1)
 begin : txop_claim_table_new_unpack
-    reg[31:0] ASCII;
+    reg[71:0] ASCII;
     wire[1:0] txop_claim_table_new_location;
     assign txop_claim_table_new_location = txop_claim_table_new[txop_claim_table_new_index];
     assign txop_claim_table_new_unpacked[((txop_claim_table_new_index + 1) * 2) - 1 : (txop_claim_table_new_index * 2)] = txop_claim_table_new[txop_claim_table_new_index];
@@ -816,9 +812,9 @@ begin : txop_claim_table_new_unpack
     always@(txop_claim_table_new_location)
     begin
         casex(txop_claim_table_new_location)
-            RS.mod_inst_148_8.NONE : ASCII = "NONE";
-            RS.mod_inst_148_8.HARD : ASCII = "HARD";
-            default :                ASCII = "XXXX ";
+            RS.mod_inst_148_8.UNCLAIMED : ASCII = "UNCLAIMED";
+            RS.mod_inst_148_8.CLAIMED   : ASCII = "CLAIMED";
+            default :                     ASCII = "XXXX ";
         endcase
     end
 
@@ -833,10 +829,10 @@ mod_148_9 mod_inst_148_9(
                  .txop_claim_table_unpacked(txop_claim_table_unpacked),
                  .txop_claim_table_new_unpacked(txop_claim_table_new_unpacked),
                  .dplca_txop_id(dplca_txop_id),
-                 .hard_aging_cycles(hard_aging_cycles),
+                 .aging_cycles(aging_cycles),
 
                  .mod_148_9_state(mod_148_9_state),
-                 .long_cnt(long_cnt),
+                 .aging_cnt(aging_cnt),
                  .dplca_new_age(dplca_new_age),
                  .dplca_txop_table_upd(dplca_txop_table_upd)
                  );

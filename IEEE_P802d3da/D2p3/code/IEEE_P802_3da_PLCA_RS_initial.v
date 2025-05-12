@@ -13,7 +13,7 @@ begin                                                                           
                                                                                         \
     top.dte_node_``i``.RS.plca_node_count              = 8'h08;                         \
                                                                                         \
-    top.dte_node_``i``.RS.hard_aging_cycles            = 32'd100;                       \
+    top.dte_node_``i``.RS.aging_cycles                 = 32'd100;                       \
                                                                                         \
 end                                                                                     \
                                                                                         \

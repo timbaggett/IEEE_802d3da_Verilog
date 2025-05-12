@@ -107,7 +107,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca.mod_inst_148_4_7_func.HARD_CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_change)
+always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca.mod_inst_148_4_7_func.CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_CLAIM_change)
 
 begin
 
@@ -149,7 +149,7 @@ begin
 
     COORDINATOR:
     begin
-        if((!plca.mod_inst_148_4_7_func.HARD_CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && (!plca.mod_inst_148_4_7_func.HARD_CLAIMING(plca_node_count - 1)) && (plca_node_count > 8) && dplca_new_age)
+        if((!plca.mod_inst_148_4_7_func.CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && (!plca.mod_inst_148_4_7_func.CLAIMING(plca_node_count - 1)) && (plca_node_count > 8) && dplca_new_age)
         begin
             next_mod_148_8_state <= REDUCE_NODE_COUNT;
         end
@@ -157,11 +157,11 @@ begin
         begin
             next_mod_148_8_state <= LOOPBACK_TX;
         end
-        if(( dplca_txop_table_upd && plca.mod_inst_148_4_7_func.HARD_CLAIMING(0) ) || (rx_cmd == BEACON))
+        if(( dplca_txop_table_upd && plca.mod_inst_148_4_7_func.CLAIMING(0) ) || (rx_cmd == BEACON))
         begin
             next_mod_148_8_state <= LEARNING;
         end
-        if((!plca.mod_inst_148_4_7_func.HARD_CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && plca.mod_inst_148_4_7_func.HARD_CLAIMING(plca_node_count - 1) && (plca_node_count < 255) && dplca_new_age)
+        if((!plca.mod_inst_148_4_7_func.CLAIMING(0)) && (rx_cmd != BEACON) && dplca_txop_table_upd && plca.mod_inst_148_4_7_func.CLAIMING(plca_node_count - 1) && (plca_node_count < 255) && dplca_new_age)
         begin
             next_mod_148_8_state <= INCREASE_NODE_COUNT;
         end
@@ -217,7 +217,7 @@ begin
         begin
             next_mod_148_8_state <= DISABLED;
         end
-        if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.HARD_CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM(txop_claim_table_unpacked)) )))
+        if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table_unpacked)) )))
         begin
             next_mod_148_8_state <= !FOLLOWER;
             next_mod_148_8_state <= FOLLOWER;
@@ -262,7 +262,7 @@ begin
 
     REDUCE_NODE_COUNT:
     begin
-        plca.plca_node_count = plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM(txop_claim_table_unpacked) + 2;
+        plca.plca_node_count = plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table_unpacked) + 2;
     end
 
     LEARNING:

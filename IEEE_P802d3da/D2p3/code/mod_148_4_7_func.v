@@ -69,7 +69,7 @@ end
 
 /**********************************************************************/
 /*                                                                    */
-/* HARD_CLAIMING function                                             */
+/* CLAIMING function                                                  */
 /*                                                                    */
 /* Used  as  a  state  exit  condition so the action [name]_change is */
 /* included in the state diagram sensitivity list. The action must be */
@@ -77,18 +77,18 @@ end
 /*                                                                    */
 /**********************************************************************/
 
-event         HARD_CLAIMING_change;
+event         CLAIMING_change;
 
-function      automatic HARD_CLAIMING;
+function      automatic CLAIMING;
 input[7:0]    nodeID;
 begin
 
-    HARD_CLAIMING = plca.mod_inst_148_4_7_func.HARD_CLAIMING_function(nodeID);
+    CLAIMING = plca.mod_inst_148_4_7_func.CLAIMING_function(nodeID);
 
-// $display("time = %0t HARD_CLAIMING = %0b nodeID = 0x%0h", $time, HARD_CLAIMING, nodeID);
+// $display("time = %0t CLAIMING = %0b nodeID = 0x%0h", $time, CLAIMING, nodeID);
 // $display("time = %0t mod_148_8_state = 0x%0h next_mod_148_8_state = 0x%0h", $time, mod_inst_148_8.mod_148_8_state, mod_inst_148_8.next_mod_148_8_state);
 
-   -> HARD_CLAIMING_change;
+   -> CLAIMING_change;
 
 end
 endfunction
@@ -96,7 +96,7 @@ endfunction
 
 /**********************************************************************/
 /*                                                                    */
-/* MAX_HARD_CLAIM function                                            */
+/* MAX_CLAIM function                                                 */
 /*                                                                    */
 /* Used  as  a  state  exit  condition so the action [name]_change is */
 /* included in the state diagram sensitivity list. The action must be */
@@ -104,15 +104,15 @@ endfunction
 /*                                                                    */
 /**********************************************************************/
 
-event         MAX_HARD_CLAIM_change;
+event         MAX_CLAIM_change;
 
-function      MAX_HARD_CLAIM;
+function      MAX_CLAIM;
 input         null_value;
 begin
 
-    MAX_HARD_CLAIM = plca.mod_inst_148_4_7_func.MAX_HARD_CLAIM_function(null_value);
+    MAX_CLAIM = plca.mod_inst_148_4_7_func.MAX_CLAIM_function(null_value);
 
-    -> MAX_HARD_CLAIM_change;
+    -> MAX_CLAIM_change;
 
 end
 endfunction

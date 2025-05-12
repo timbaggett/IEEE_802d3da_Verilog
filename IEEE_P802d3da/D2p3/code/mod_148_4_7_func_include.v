@@ -26,11 +26,11 @@ begin
     begin
         if(table_name == CLAIM_TABLE)
         begin
-            plca.txop_claim_table[i] = NONE;
+            plca.txop_claim_table[i] = UNCLAIMED;
         end
         if(table_name == CLAIM_TABLE_NEW)
         begin
-            plca.txop_claim_table_new[i] = NONE;
+            plca.txop_claim_table_new[i] = UNCLAIMED;
         end
     end
 
@@ -59,22 +59,22 @@ endtask
 
 /**********************************************************************/
 /*                                                                    */
-/* HARD_CLAIMING function                                             */
+/* CLAIMING function                                                  */
 /*                                                                    */
 /**********************************************************************/
 /*                                                                    */
-/* This  function takes  as  parameter  “ID”,  a transmit opportunity */
+/* This  function takes  as  parameter 'ID'�,  a transmit opportunity */
 /* integer number  in the range of 0 to 255. It returns the result of */
 /* the following  boolean expression:                                 */
-/*  dplca_txop_end * (dplca_txop_claim = HARD) * (dplca_txop_id = ID) */
+/*  dplca_txop_end * (dplca_txop_claim = CLAIMED) * (dplca_txop_id = ID) */
 /*                                                                    */
 /**********************************************************************/
 
-function      automatic  HARD_CLAIMING_function;
+function      automatic  CLAIMING_function;
 input[7:0]    nodeID;
 begin
 
-    HARD_CLAIMING_function = plca.dplca_txop_end * (plca.dplca_txop_claim == HARD) * (plca.dplca_txop_id == nodeID);
+    CLAIMING_function = plca.dplca_txop_end * (plca.dplca_txop_claim == CLAIMED) * (plca.dplca_txop_id == nodeID);
 
 end
 endfunction
@@ -82,33 +82,33 @@ endfunction
 
 /**********************************************************************/
 /*                                                                    */
-/* MAX_HARD_CLAIM function                                            */
+/* MAX_CLAIM function                                                 */
 /*                                                                    */
 /**********************************************************************/
 /*                                                                    */
 /* This  function takes as parameter  the txop_claim_table defined in */
 /* 148.4.7.2.  It returns the highest ID in the table which is marked */
-/* as HARD claimed.  Note that the ID claimed by the  local node does */
-/* not count as claimed.                                              */
+/* as CLAIMED.  Note that the ID claimed by the  local node does not  */
+/* count as claimed.                                                  */
 /*                                                                    */
 /**********************************************************************/
 
-function      MAX_HARD_CLAIM_function;
+function      MAX_CLAIM_function;
 input         null_value;
 integer       i;
 begin
 
-    MAX_HARD_CLAIM_function = 7'h00;
+    MAX_CLAIM_function = 7'h00;
     
     for(i = 0; i <= 255; i = i + 1)
     begin
 
 // Need to add exclusion for ID claimed by the local node
-// Need to define what value is returned if no HARD found
+// Need to define what value is returned if no CLAIMED found
 
-        if(plca.txop_claim_table_new[i] == HARD)
+        if(plca.txop_claim_table_new[i] == CLAIMED)
         begin
-            MAX_HARD_CLAIM_function = i;
+            MAX_CLAIM_function = i;
         end
     end
 
@@ -123,14 +123,14 @@ endfunction
 /**********************************************************************/
 /*                                                                    */
 /* This function takes as  parameter the txop_claim_table  defined in */
-/* 148.4.7.2.  It returns any ID  that  is not marked as HARD         */
+/* 148.4.7.2.  It returns any ID  that  is not marked as CLAIMED      */
 /* claimed in the table, with the following exceptions:               */
 /*                                                                    */
 /* a. it  shall  not  return  zero, which is  reserved  for the  PLCA */
 /* coordinator                                                        */
 /*                                                                    */
-/* b. it  shall  not  return an ID  greater  than  the  highest  HARD */
-/* claimed in the table, unless this is the only one available.       */
+/* b. it  shall  not  return an ID  greater  than  the  highest       */
+/* CLAIMED in the table, unless this is the only one available.       */
 /*                                                                    */
 /* Note that  it  is  allowed  for  this  function  to  return the ID */
 /* currently  being  claimed by the  local node, unless it is claimed */
@@ -150,7 +150,7 @@ begin
 
         // $display("time = %0t PICK_FREE_TXOP_function = 0x%0h id_pick = 0x%0h txop_claim_table[id_pick] = 0x%0h", $time, PICK_FREE_TXOP_function, id_pick, plca.txop_claim_table[id_pick]);
 
-        if(plca.txop_claim_table[id_pick] == NONE)
+        if(plca.txop_claim_table[id_pick] == UNCLAIMED)
         begin
             PICK_FREE_TXOP_function = id_pick;
         end

@@ -28,7 +28,6 @@ module           mod_148_3(
                  to_timer_not_done,
                  max_bc,
                  burst_timer_done,
-                 append_commit_timer_done,
                  dplca_txop_table_upd,
                  dplca_aging,
                  plca_node_count,
@@ -65,7 +64,6 @@ input            COL;
 input            to_timer_not_done;
 input[7:0]       max_bc;
 input            burst_timer_done;
-input            append_commit_timer_done;
 input            dplca_txop_table_upd;
 input            dplca_aging;
 input[7:0]       plca_node_count;
@@ -132,7 +130,7 @@ parameter        ABORT               =  4'b1101;
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_3_state, plca_reset, plca_en, local_nodeID, dplca_en, invalid_beacon_timer_done, PMCD, CRS, TX_EN, beacon_timer_done, packetPending, to_timer_done, rx_cmd, beacon_det_timer_done, receiving, beacon_det_timer_not_done, COL, to_timer_not_done, max_bc, burst_timer_done, append_commit_timer_done, dplca_txop_table_upd, dplca_aging, plca_node_count)
+always@(mod_148_3_state, plca_reset, plca_en, local_nodeID, dplca_en, invalid_beacon_timer_done, PMCD, CRS, TX_EN, beacon_timer_done, packetPending, to_timer_done, rx_cmd, beacon_det_timer_done, receiving, beacon_det_timer_not_done, COL, to_timer_not_done, max_bc, burst_timer_done, dplca_txop_table_upd, dplca_aging, plca_node_count)
 
 begin
 
@@ -346,7 +344,7 @@ begin
         committed = FALSE;
         curID = 0;
         plca_active = FALSE;
-        dplca_txop_claim = NONE;
+        dplca_txop_claim = UNCLAIMED;
         dplca_txop_end = FALSE;
         dplca_txop_id = 0;
         dplca_txop_node_count = plca_node_count;
@@ -387,7 +385,7 @@ begin
     WAIT_TO:
     begin
         -> plca.mod_inst_148_4_4_timer.to_timer.start;
-        dplca_txop_claim = NONE;
+        dplca_txop_claim = UNCLAIMED;
         dplca_txop_end = FALSE;
         dplca_txop_id = curID;
     end
@@ -410,7 +408,7 @@ begin
     begin
         if( rx_cmd == COMMIT)
         begin
-            dplca_txop_claim = HARD;
+            dplca_txop_claim = CLAIMED;
         end
     end
 

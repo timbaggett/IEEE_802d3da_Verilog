@@ -15,10 +15,10 @@ module           mod_148_9(
                  dplca_txop_id,
                  txop_claim_table_unpacked,
                  txop_claim_table_new_unpacked,
-                 hard_aging_cycles,
+                 aging_cycles,
 
                  mod_148_9_state,
-                 long_cnt,
+                 aging_cnt,
                  dplca_new_age,
                  dplca_txop_table_upd
                  );
@@ -29,16 +29,16 @@ input[1:0]       dplca_txop_claim;
 input[7:0]       dplca_txop_id;
 input[511:0]     txop_claim_table_unpacked;
 input[511:0]     txop_claim_table_new_unpacked;
-input[15:0]      hard_aging_cycles;
+input[15:0]      aging_cycles;
 
 output[2:0]      mod_148_9_state;
-output[15:0]     long_cnt;
+output[15:0]     aging_cnt;
 output           dplca_new_age;
 output           dplca_txop_table_upd;
 
 reg[2:0]         mod_148_9_state;
 reg[2:0]         next_mod_148_9_state;
-reg[15:0]        long_cnt;
+reg[15:0]        aging_cnt;
 reg              dplca_new_age;
 reg              dplca_txop_table_upd;
 
@@ -49,7 +49,7 @@ reg              dplca_txop_table_upd;
 parameter        DISABLED            =  3'b000;
 parameter        WAIT_TXOP_END       =  3'b001;
 parameter        TXOP_END            =  3'b010;
-parameter        UPDATE_HARD         =  3'b011;
+parameter        UPDATE_CLAIMED      =  3'b011;
 parameter        NOTIFY              =  3'b100;
 
 /*                                                                    */
@@ -108,7 +108,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, hard_aging_cycles)
+always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, aging_cycles)
 
 begin
 
@@ -142,17 +142,17 @@ begin
 
     TXOP_END:
     begin
-        #1000 if(dplca_txop_claim == HARD)
+        #1000 if(dplca_txop_claim == CLAIMED)
         begin
-            next_mod_148_9_state <= UPDATE_HARD;
+            next_mod_148_9_state <= UPDATE_CLAIMED;
         end
-        if(dplca_txop_claim == NONE)
+        if(dplca_txop_claim == UNCLAIMED)
         begin
             next_mod_148_9_state <= NOTIFY;
         end
     end
 
-    UPDATE_HARD:
+    UPDATE_CLAIMED:
     begin
         begin
             next_mod_148_9_state <= NOTIFY;
@@ -189,7 +189,7 @@ begin
     begin
         plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE);
         plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE_NEW);
-        long_cnt = 0;
+        aging_cnt = 0;
         dplca_new_age = FALSE;
         dplca_txop_table_upd = FALSE;
     end
@@ -204,24 +204,24 @@ begin
     begin
         if( dplca_txop_id == 0)
         begin
-            if( long_cnt == hard_aging_cycles)
+            if( aging_cnt == aging_cycles)
             begin
                 plca.mod_inst_148_4_7_func.mod_148_9_ARRAY_ASSIGN_$D$11();
                 plca.mod_inst_148_4_7_func.CLEAR_TXOP_TABLE(CLAIM_TABLE_NEW);
                 dplca_new_age = TRUE;
-                long_cnt = 0;
+                aging_cnt = 0;
             end
             else
             begin
-                long_cnt = long_cnt + 1;
+                aging_cnt = aging_cnt + 1;
             end
         end
     end
 
-    UPDATE_HARD:
+    UPDATE_CLAIMED:
     begin
-        plca.txop_claim_table[dplca_txop_id] = HARD;
-        plca.txop_claim_table_new[dplca_txop_id] = HARD;
+        plca.txop_claim_table[dplca_txop_id] = CLAIMED;
+        plca.txop_claim_table_new[dplca_txop_id] = CLAIMED;
     end
 
     NOTIFY:
@@ -248,15 +248,14 @@ begin
     endcase
 end
 
-reg [31:0]       dplca_txop_claim_ASCII;
+reg [71:0]       dplca_txop_claim_ASCII;
 initial          dplca_txop_claim_ASCII = "- X -";
 
 always@(dplca_txop_claim)
 begin
     case(dplca_txop_claim)
-        2'b00 : dplca_txop_claim_ASCII = "SOFT";
-        2'b01 : dplca_txop_claim_ASCII = "HARD";
-        2'b10 : dplca_txop_claim_ASCII = "NONE";
+        2'b00 : dplca_txop_claim_ASCII = "UNCLAIMED";
+        2'b01 : dplca_txop_claim_ASCII = "CLAIMED";
         default : dplca_txop_claim_ASCII = "- X -";
     endcase
 end
@@ -270,7 +269,7 @@ begin
         3'b000 : mod_148_9_state_ASCII = "DISABLED";
         3'b001 : mod_148_9_state_ASCII = "WAIT_TXOP_END";
         3'b010 : mod_148_9_state_ASCII = "TXOP_END";
-        3'b011 : mod_148_9_state_ASCII = "UPDATE_HARD";
+        3'b011 : mod_148_9_state_ASCII = "UPDATE_CLAIMED";
         3'b100 : mod_148_9_state_ASCII = "NOTIFY";
         default : mod_148_9_state_ASCII = "- X -";
     endcase

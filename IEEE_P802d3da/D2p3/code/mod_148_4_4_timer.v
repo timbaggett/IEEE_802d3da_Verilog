@@ -13,13 +13,11 @@ module           mod_148_4_4_timer (
                  invalid_beacon_timer_done,
                  burst_timer_done,
                  to_timer_done,
-                 append_commit_timer_done,
                  beacon_timer_not_done,
                  beacon_det_timer_not_done,
                  invalid_beacon_timer_not_done,
                  burst_timer_not_done,
-                 to_timer_not_done,
-                 append_commit_timer_not_done
+                 to_timer_not_done
                  );
 
 output           beacon_timer_done;
@@ -27,13 +25,11 @@ output           beacon_det_timer_done;
 output           invalid_beacon_timer_done;
 output           burst_timer_done;
 output           to_timer_done;
-output           append_commit_timer_done;
 output           beacon_timer_not_done;
 output           beacon_det_timer_not_done;
 output           invalid_beacon_timer_not_done;
 output           burst_timer_not_done;
 output           to_timer_not_done;
-output           append_commit_timer_not_done;
 
 `ifdef simulate
 
@@ -96,18 +92,6 @@ IEEE802_3_timer #(to_timer_duration_min, to_timer_duration_max)
 to_timer(
                .timer_done(to_timer_done),
                .timer_not_done(to_timer_not_done));
-
-/*                                                                      */
-/* append_commit_timer                                                  */
-/*                                                                      */
-
-parameter       append_commit_timer_duration_min = 2150;
-parameter       append_commit_timer_duration_max = 2250;
-
-IEEE802_3_timer #(append_commit_timer_duration_min, append_commit_timer_duration_max)
-append_commit_timer(
-               .timer_done(append_commit_timer_done),
-               .timer_not_done(append_commit_timer_not_done));
 
 `endif
 
