@@ -38,7 +38,7 @@ initial
 begin
 
     $timeformat(-6, 3, " us", 20);
-    $dumpfile("IEEE802_3da.dump");
+    $dumpfile("IEEE802_3da.fst");
     $dumpvars(5, top, tb);
 
 end

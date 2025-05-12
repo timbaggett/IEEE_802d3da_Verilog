@@ -2,4 +2,4 @@ iverilog -I "..\code" -I "..\..\.." -Wmacro-replacement -D simulate -o "IEEE_P80
 
 pause
 
-vvp IEEE_P802_3da_PLCA.ve
+vvp IEEE_P802_3da_PLCA.ve -fst
