@@ -1,0 +1,9 @@
+* text=auto
+*.v text
+*.gtkw text
+*.dump text
+*.f text
+*.ve text
+
+*.bat text eol=crlf
+
