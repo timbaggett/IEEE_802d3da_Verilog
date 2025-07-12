@@ -9,8 +9,8 @@
 
 module MMS();
 
-`include "Clause 6\code\IEEE_802_3_2018_PLS_param.v"
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\mod_99_4_7_param.v"
+`include "Clause 6/code/IEEE_802_3_2018_PLS_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/mod_99_4_7_param.v"
 
 wire[3:0]        mod_99_5_state;
 wire[1:0]        txFrame;

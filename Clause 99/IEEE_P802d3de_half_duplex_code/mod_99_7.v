@@ -38,9 +38,9 @@ reg[3:0]         mod_99_7_state;
 reg[3:0]         next_mod_99_7_state;
 
 `ifdef simulate
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\IEEE_P802_3br_param.v"
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\mod_99_4_7_param.v"
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\mod_99_7_func.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/IEEE_P802_3br_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/mod_99_4_7_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/mod_99_7_func.v"
 
 parameter        null                =  1'b0;
 

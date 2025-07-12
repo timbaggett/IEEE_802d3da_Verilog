@@ -34,7 +34,7 @@
 
 module `PLS();
 
-`include "Clause 6\code\IEEE_802_3_2018_PLS_param.v"
+`include "Clause 6/code/IEEE_802_3_2018_PLS_param.v"
 
 /*                                                                    */
 /* 6.3 Detailed service specification                                 */

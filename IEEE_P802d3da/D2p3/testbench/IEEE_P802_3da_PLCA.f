@@ -9,11 +9,11 @@
 
 // Include MAC
 
-`include "Clause 4\code\IEEE_802_3_2022_MAC.v"
+`include "Clause 4/code/IEEE_802_3_2022_MAC.v"
 
 // Include PLS
 
-`include "Clause 6\code\IEEE_802_3_2022_PLS.v"
+`include "Clause 6/code/IEEE_802_3_2022_PLS.v"
 
 // Include RS
 
@@ -32,18 +32,18 @@
 
 // Include PHY
 
-`include "Clause 147\code\10BASE_T1S_phy.v"
-`include "Clause 147\code\mod_147_4.v"
-`include "Clause 147\code\mod_147_7.v"
-`include "Clause 147\code\mod_147_10.v"
-`include "Clause 147\code\mod_147_11.v"
-`include "Clause 147\code\mod_147_14.v"
-`include "Clause 147\code\mod_147_3_7_1_timer.v"
-`include "Clause 147\code\mod_147_3_7_2_timer.v"
-`include "Clause 147\code\mod_147_3_2_timer.v"
+`include "Clause 147/code/10BASE_T1S_phy.v"
+`include "Clause 147/code/mod_147_4.v"
+`include "Clause 147/code/mod_147_7.v"
+`include "Clause 147/code/mod_147_10.v"
+`include "Clause 147/code/mod_147_11.v"
+`include "Clause 147/code/mod_147_14.v"
+`include "Clause 147/code/mod_147_3_7_1_timer.v"
+`include "Clause 147/code/mod_147_3_7_2_timer.v"
+`include "Clause 147/code/mod_147_3_2_timer.v"
 
 
 // Include IEEE 802.3 timer
 
-`include "generic\code\IEEE_802_3_timer.v"
-`include "generic\code\IEEE_802_3_timing.v"
+`include "generic/code/IEEE_802_3_timer.v"
+`include "generic/code/IEEE_802_3_timing.v"

@@ -31,8 +31,8 @@ reg              next_mod_147_14_state;
 reg              link_status;
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\mod_147_4_4_param.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/mod_147_4_4_param.v"
 
 parameter        LINK_DOWN           =  1'b0;
 parameter        LINK_UP             =  1'b1;

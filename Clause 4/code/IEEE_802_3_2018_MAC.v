@@ -13,8 +13,8 @@ module MAC();
 
 reg debug;
 
-`include "generic\code\IEEE_802_3_param.v"
-`include "Clause 4\code\IEEE_802_3_2018_MAC_param.v"
+`include "generic/code/IEEE_802_3_param.v"
+`include "Clause 4/code/IEEE_802_3_2018_MAC_param.v"
 
 
 /*                                                                    */

@@ -61,9 +61,9 @@ reg              pAllow;
 reg[2:0]         preambleCnt;
 
 `ifdef simulate
-`include "Clause 99\code\IEEE_P802_3br_param.v"
-`include "Clause 99\code\mod_99_4_7_param.v"
-`include "Clause 99\code\mod_99_5_func.v"
+`include "Clause 99/code/IEEE_P802_3br_param.v"
+`include "Clause 99/code/mod_99_4_7_param.v"
+`include "Clause 99/code/mod_99_5_func.v"
 
 parameter        null                =  1'b0;
 

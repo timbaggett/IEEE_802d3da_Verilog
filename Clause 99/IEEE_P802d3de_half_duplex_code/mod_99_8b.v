@@ -26,8 +26,8 @@ reg              mod_99_8b_state;
 reg              next_mod_99_8b_state;
 
 `ifdef simulate
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\IEEE_P802_3br_param.v"
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\mod_99_4_7_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/IEEE_P802_3br_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/mod_99_4_7_param.v"
 
 parameter        RESPOND_IDLE        =  1'b0;
 parameter        SEND_RESPOND        =  1'b1;

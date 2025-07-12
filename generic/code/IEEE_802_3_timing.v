@@ -20,7 +20,7 @@ input        delay_element_input;
 output       delay_element_output;
 input[2:0]   delay_type;
 
-`include "generic\code\IEEE_802_3_param.v"
+`include "generic/code/IEEE_802_3_param.v"
 
 parameter    delay_value_max = 0;
 parameter    delay_value_min = 0;
@@ -87,7 +87,7 @@ output       delay_element_output_P;
 output       delay_element_output_N;
 input[2:0]   delay_type;
 
-`include "generic\code\IEEE_802_3_param.v"
+`include "generic/code/IEEE_802_3_param.v"
 
 parameter    delay_value_max = 0;
 parameter    delay_value_min = 0;

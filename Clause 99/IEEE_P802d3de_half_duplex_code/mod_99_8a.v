@@ -43,8 +43,8 @@ reg              verify_fail;
 reg[1:0]         verifyCnt;
 
 `ifdef simulate
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\IEEE_P802_3br_param.v"
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\mod_99_4_7_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/IEEE_P802_3br_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/mod_99_4_7_param.v"
 
 parameter        INIT_VERIFICATION   =  3'b000;
 parameter        VERIFICATION_IDLE   =  3'b001;

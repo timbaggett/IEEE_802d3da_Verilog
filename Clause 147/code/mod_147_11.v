@@ -49,8 +49,8 @@ reg[7:0]         cnt_h;
 reg[7:0]         cnt_l;
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\mod_147_3_7_2_param.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/mod_147_3_7_2_param.v"
 
 parameter        INACTIVE            =  3'b000;
 parameter        COUNT_DOWN          =  3'b001;

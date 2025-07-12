@@ -51,9 +51,9 @@ reg              err;
 reg[4:0]         tx_sym;
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\mod_147_3_2_param.v"
-`include "Clause 147\code\mod_147_3_2_func.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/mod_147_3_2_param.v"
+`include "Clause 147/code/mod_147_3_2_func.v"
 
 parameter        SILENT              =  4'b0000;
 parameter        COMMIT_STATE        =  4'b0001;

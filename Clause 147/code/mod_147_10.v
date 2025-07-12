@@ -47,8 +47,8 @@ reg[3:0]         next_mod_147_10_state;
 reg              hb_cmd;
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\mod_147_3_7_1_param.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/mod_147_3_7_1_param.v"
 
 parameter        INIT                =  4'b0000;
 parameter        WAIT_TMR            =  4'b0001;

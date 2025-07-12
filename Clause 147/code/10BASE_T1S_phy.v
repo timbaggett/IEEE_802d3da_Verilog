@@ -69,8 +69,8 @@ assign BI_DA_N_rx_in = BI_DA_N;
 
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\IEEE_P802_3cg_10BASE_T1S_phy_timing.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/IEEE_P802_3cg_10BASE_T1S_phy_timing.v"
 
 /*                                                                    */
 /* delay_type                                                         */

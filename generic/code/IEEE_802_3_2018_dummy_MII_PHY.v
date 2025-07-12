@@ -60,7 +60,7 @@ reg              RX_DV;
 reg              RX_ER;
 
 `ifdef simulate
-`include "Clause 99\IEEE_P802d3de_half_duplex_code\IEEE_P802_3br_param.v"
+`include "Clause 99/IEEE_P802d3de_half_duplex_code/IEEE_P802_3br_param.v"
 
 assign           COL = collision;
 

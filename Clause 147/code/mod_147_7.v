@@ -60,9 +60,9 @@ reg[7:0]         precnt;
 reg[3:0]         null_value;
 
 `ifdef simulate
-`include "Clause 147\code\IEEE_P802_3cg_param.v"
-`include "Clause 147\code\mod_147_3_3_param.v"
-`include "Clause 147\code\mod_147_3_3_func.v"
+`include "Clause 147/code/IEEE_P802_3cg_param.v"
+`include "Clause 147/code/mod_147_3_3_param.v"
+`include "Clause 147/code/mod_147_3_3_func.v"
 
 parameter        WAIT_SYNC           =  4'b0000;
 parameter        SYNCING             =  4'b0001;

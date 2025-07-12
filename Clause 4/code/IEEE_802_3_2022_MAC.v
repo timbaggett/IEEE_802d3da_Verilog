@@ -13,8 +13,8 @@ module MAC();
 
 reg debug;
 
-`include "generic\code\IEEE_802_3_param.v"
-`include "Clause 4\code\IEEE_802_3_2022_MAC_param.v"
+`include "generic/code/IEEE_802_3_param.v"
+`include "Clause 4/code/IEEE_802_3_2022_MAC_param.v"
 
 /*                                                                    */
 /* 2.3.1.2 Semantics of the service primitive                         */
