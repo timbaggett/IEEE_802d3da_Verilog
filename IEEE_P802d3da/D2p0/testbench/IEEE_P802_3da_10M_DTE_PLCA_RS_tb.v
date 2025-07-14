@@ -3,7 +3,7 @@
 module tb();
 
 `include "IEEE_P802_3da_param.v"
-`include "Clause 4\code\IEEE_802_3_2022_MAC_init.v"
+`include "Clause_4/code/IEEE_802_3_2022_MAC_init.v"
 
 reg[47:0]    destination_address;
 reg[47:0]    source_address;
