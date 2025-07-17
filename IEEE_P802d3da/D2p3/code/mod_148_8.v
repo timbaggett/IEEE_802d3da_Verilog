@@ -250,7 +250,7 @@ begin
 
     WAIT_BEACON:
     begin
-        plca.local_nodeID = 255;
+        plca.local_nodeID = 254;	/* Initialize to highest PLCA TO to avoid CSMA/CD */
         plca.plca_node_count = 8;
     end
 
@@ -267,7 +267,7 @@ begin
 
     LEARNING:
     begin
-        plca.local_nodeID = 255;
+        plca.local_nodeID = 254;	/* Initialize to highest PLCA TO to avoid CSMA/CD */
         dplca_aging = ON;
     end
 
