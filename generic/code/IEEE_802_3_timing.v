@@ -175,7 +175,7 @@ always @(posedge clock)
 begin
     if (($time - data_time) < setup_time)
     begin
-        $display($time, " %m Setup time error. Required: %f", setup_time, ", actual: ", $time - data_time, );
+        // $display($time, " %m Setup time error. Required: %f", setup_time, ", actual: ", $time - data_time, );
     end
 end
 
@@ -219,7 +219,7 @@ begin
     begin
         if (($time - event1_time) > delay_time)
         begin
-            $display($time, " %m Max delay time error. Required: %f", delay_time, ", actual: ", $time - event1_time);
+            // $display($time, " %m Max delay time error. Required: %f", delay_time, ", actual: ", $time - event1_time);
         end
         enabled = false;
     end
