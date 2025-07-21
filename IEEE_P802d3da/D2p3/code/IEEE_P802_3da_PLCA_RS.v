@@ -125,7 +125,7 @@ reg[15:0]        aging_cycles;
 /* or CLAIMED.                                                        */
 /*                                                                    */
 
-reg [1:0] txop_claim_table [255:0];
+reg [255:0] txop_claim_table;
 
 
 /*                                                                    */
@@ -136,7 +136,8 @@ reg [1:0] txop_claim_table [255:0];
 /* Values: same as txop_claim_table.                                  */
 /*                                                                    */
 
-reg[1:0] txop_claim_table_new [255:0];
+reg [255:0] txop_claim_table_new;
+
 
 event transition;
 reg[1:0] temp;
@@ -738,7 +739,7 @@ mod_148_8 mod_inst_148_8(
                  .dplca_new_age(dplca_new_age),
                  .dplca_txop_id(dplca_txop_id),
                  .dplca_txop_node_count(dplca_txop_node_count),
-                 .txop_claim_table_unpacked(txop_claim_table_unpacked),
+                 .txop_claim_table(txop_claim_table),
 
                  .mod_148_8_state(mod_148_8_state),
                  .dplca_aging(dplca_aging),
@@ -752,31 +753,21 @@ wire[15:0]       aging_cnt;
 wire             dplca_new_age;
 wire             dplca_txop_table_upd;
 
-/*                                                                    */
-/* Unpack multidimensional arrays                                     */
-/* Verilog does not support the  use  of  multidimensional arrays  in */
-/* module  ports. As a result, unpack the multidimensional array into */
-/* a vector and use  this  as  a module port. The vector must then be */
-/* packed back into an array after passing through the port.          */
-/*                                                                    */
 
 /*                                                                    */
 /* Unpack txop_claim_table                                            */
 /*                                                                    */
 
-wire [511:0] txop_claim_table_unpacked;
-
 genvar txop_claim_table_index;
 generate for (txop_claim_table_index = 0; txop_claim_table_index < 256; txop_claim_table_index = txop_claim_table_index + 1)
 begin : txop_claim_table_unpack
     reg[71:0] ASCII;
-    wire[1:0] txop_claim_table_location;
-    assign txop_claim_table_location = txop_claim_table[txop_claim_table_index];
-    assign txop_claim_table_unpacked[((txop_claim_table_index + 1) * 2) - 1 : (txop_claim_table_index * 2)] = txop_claim_table[txop_claim_table_index];
+    wire[1:0] txop_claim_table_value;
+    assign txop_claim_table_value = txop_claim_table[txop_claim_table_index];
 
-    always@(txop_claim_table_location)
+    always@(txop_claim_table_value)
     begin
-        casex(txop_claim_table_location)
+        casex(txop_claim_table_value)
             RS.mod_inst_148_8.UNCLAIMED : ASCII = "UNCLAIMED";
             RS.mod_inst_148_8.CLAIMED   : ASCII = "CLAIMED";
             default :                     ASCII = "XXXX ";
@@ -790,19 +781,16 @@ endgenerate
 /* Unpack txop_claim_table_new                                        */
 /*                                                                    */
 
-wire [511:0] txop_claim_table_new_unpacked;
-
 genvar txop_claim_table_new_index;
 generate for (txop_claim_table_new_index = 0; txop_claim_table_new_index < 256; txop_claim_table_new_index = txop_claim_table_new_index + 1)
 begin : txop_claim_table_new_unpack
     reg[71:0] ASCII;
-    wire[1:0] txop_claim_table_new_location;
-    assign txop_claim_table_new_location = txop_claim_table_new[txop_claim_table_new_index];
-    assign txop_claim_table_new_unpacked[((txop_claim_table_new_index + 1) * 2) - 1 : (txop_claim_table_new_index * 2)] = txop_claim_table_new[txop_claim_table_new_index];
+    wire[1:0] txop_claim_table_new_value;
+    assign txop_claim_table_new_value = txop_claim_table_new[txop_claim_table_new_index];
 
-    always@(txop_claim_table_new_location)
+    always@(txop_claim_table_new_value)
     begin
-        casex(txop_claim_table_new_location)
+        casex(txop_claim_table_new_value)
             RS.mod_inst_148_8.UNCLAIMED : ASCII = "UNCLAIMED";
             RS.mod_inst_148_8.CLAIMED   : ASCII = "CLAIMED";
             default :                     ASCII = "XXXX ";
@@ -817,8 +805,8 @@ mod_148_9 mod_inst_148_9(
                  .dplca_aging(dplca_aging),
                  .dplca_txop_end(dplca_txop_end),
                  .dplca_txop_claim(dplca_txop_claim),
-                 .txop_claim_table_unpacked(txop_claim_table_unpacked),
-                 .txop_claim_table_new_unpacked(txop_claim_table_new_unpacked),
+                 .txop_claim_table(txop_claim_table),
+                 .txop_claim_table_new(txop_claim_table_new),
                  .dplca_txop_id(dplca_txop_id),
                  .aging_cycles(aging_cycles),
 

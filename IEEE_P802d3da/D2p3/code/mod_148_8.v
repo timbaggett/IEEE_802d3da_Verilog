@@ -23,7 +23,7 @@ module           mod_148_8(
                  local_nodeID,
                  dplca_txop_id,
                  dplca_txop_node_count,
-                 txop_claim_table_unpacked,
+                 txop_claim_table,
 
                  mod_148_8_state,
                  dplca_aging
@@ -43,7 +43,7 @@ input[1:0]       tx_cmd;
 input[7:0]       local_nodeID;
 input[7:0]       dplca_txop_id;
 input[7:0]       dplca_txop_node_count;
-input[511:0]     txop_claim_table_unpacked;
+input[255:0]     txop_claim_table;
 
 output[3:0]      mod_148_8_state;
 output           dplca_aging;
@@ -67,29 +67,6 @@ parameter        INCREASE_NODE_COUNT =  4'b0111;
 parameter        FOLLOWER            =  4'b1000;
 
 /*                                                                    */
-/* Pack multidimensional arrays                                       */
-/* Verilog does not support the  use  of  multidimensional arrays  in */
-/* module  ports. As a result, unpack the multidimensional array into */
-/* a vector and use  this  as  a module port. The vector must then be */
-/* packed back into an array after passing through the port.          */
-/*                                                                    */
-
-/*                                                                    */
-/* Pack txop_claim_table                                              */
-/*                                                                    */
-
-wire [1:0] txop_claim_table [255:0];
-
-genvar txop_claim_table_index;
-generate for (txop_claim_table_index = 0; txop_claim_table_index < 256; txop_claim_table_index = txop_claim_table_index + 1)
-begin : txop_claim_table_pack
-    assign txop_claim_table[txop_claim_table_index] = txop_claim_table_unpacked[((txop_claim_table_index + 1) * 2) - 1 : (txop_claim_table_index * 2)];
-    wire[1:0] txop_claim_table_location;
-    assign txop_claim_table_location = txop_claim_table[txop_claim_table_index];
-end
-endgenerate
-
-/*                                                                    */
 /* IEEE 802.3 state diagram operation                                 */
 /* The actions inside a  state block execute instantaneously. Actions */
 /* inside  state  blocks  are  atomic (i.e., uninterruptible).  After */
@@ -107,7 +84,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table_unpacked, plca.mod_inst_148_4_7_func.CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_CLAIM_change)
+always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table, plca.mod_inst_148_4_7_func.CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_CLAIM_change)
 
 begin
 
@@ -217,7 +194,7 @@ begin
         begin
             next_mod_148_8_state <= DISABLED;
         end
-        if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table_unpacked)) )))
+        if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table)) )))
         begin
             next_mod_148_8_state <= !FOLLOWER;
             next_mod_148_8_state <= FOLLOWER;
@@ -262,7 +239,7 @@ begin
 
     REDUCE_NODE_COUNT:
     begin
-        plca.plca_node_count = plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table_unpacked) + 2;
+        plca.plca_node_count = plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table) + 2;
     end
 
     LEARNING:
@@ -278,7 +255,7 @@ begin
 
     FOLLOWER:
     begin
-        plca.local_nodeID = plca.mod_inst_148_4_7_func.PICK_FREE_TXOP(txop_claim_table_unpacked);
+        plca.local_nodeID = plca.mod_inst_148_4_7_func.PICK_FREE_TXOP(txop_claim_table);
     end
 
     endcase

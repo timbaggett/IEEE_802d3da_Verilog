@@ -11,8 +11,8 @@
 // dplca_txop_claim
 // ----------------
 
-parameter        UNCLAIMED           =  2'b00;
-parameter        CLAIMED             =  2'b01;
+parameter        UNCLAIMED           =  1'b0;
+parameter        CLAIMED             =  1'b1;
 
 
 // tx_cmd

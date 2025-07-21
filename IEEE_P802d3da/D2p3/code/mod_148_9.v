@@ -13,8 +13,8 @@ module           mod_148_9(
                  dplca_txop_end,
                  dplca_txop_claim,
                  dplca_txop_id,
-                 txop_claim_table_unpacked,
-                 txop_claim_table_new_unpacked,
+                 txop_claim_table,
+                 txop_claim_table_new,
                  aging_cycles,
 
                  mod_148_9_state,
@@ -27,8 +27,8 @@ input            dplca_aging;
 input            dplca_txop_end;
 input[1:0]       dplca_txop_claim;
 input[7:0]       dplca_txop_id;
-input[511:0]     txop_claim_table_unpacked;
-input[511:0]     txop_claim_table_new_unpacked;
+input[255:0]     txop_claim_table;
+input[255:0]     txop_claim_table_new;
 input[15:0]      aging_cycles;
 
 output[2:0]      mod_148_9_state;
@@ -53,44 +53,6 @@ parameter        UPDATE_CLAIMED      =  3'b011;
 parameter        NOTIFY              =  3'b100;
 
 /*                                                                    */
-/* Pack multidimensional arrays                                       */
-/* Verilog does not support the  use  of  multidimensional arrays  in */
-/* module  ports. As a result, unpack the multidimensional array into */
-/* a vector and use  this  as  a module port. The vector must then be */
-/* packed back into an array after passing through the port.          */
-/*                                                                    */
-
-/*                                                                    */
-/* Pack txop_claim_table                                              */
-/*                                                                    */
-
-wire [1:0] txop_claim_table [255:0];
-
-genvar txop_claim_table_index;
-generate for (txop_claim_table_index = 0; txop_claim_table_index < 256; txop_claim_table_index = txop_claim_table_index + 1)
-begin : txop_claim_table_pack
-    assign txop_claim_table[txop_claim_table_index] = txop_claim_table_unpacked[((txop_claim_table_index + 1) * 2) - 1 : (txop_claim_table_index * 2)];
-    wire[1:0] txop_claim_table_location;
-    assign txop_claim_table_location = txop_claim_table[txop_claim_table_index];
-end
-endgenerate
-
-/*                                                                    */
-/* Pack txop_claim_table_new                                          */
-/*                                                                    */
-
-wire [1:0] txop_claim_table_new [255:0];
-
-genvar txop_claim_table_new_index;
-generate for (txop_claim_table_new_index = 0; txop_claim_table_new_index < 256; txop_claim_table_new_index = txop_claim_table_new_index + 1)
-begin : txop_claim_table_new_pack
-    assign txop_claim_table_new[txop_claim_table_new_index] = txop_claim_table_new_unpacked[((txop_claim_table_new_index + 1) * 2) - 1 : (txop_claim_table_new_index * 2)];
-    wire[1:0] txop_claim_table_new_location;
-    assign txop_claim_table_new_location = txop_claim_table_new[txop_claim_table_new_index];
-end
-endgenerate
-
-/*                                                                    */
 /* IEEE 802.3 state diagram operation                                 */
 /* The actions inside a  state block execute instantaneously. Actions */
 /* inside  state  blocks  are  atomic (i.e., uninterruptible).  After */
@@ -108,7 +70,7 @@ endgenerate
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table_unpacked, txop_claim_table_new_unpacked, aging_cycles)
+always@(mod_148_9_state, dplca_aging, dplca_txop_end, dplca_txop_claim, dplca_txop_id, txop_claim_table, txop_claim_table_new, aging_cycles)
 
 begin
 
@@ -254,8 +216,8 @@ initial          dplca_txop_claim_ASCII = "- X -";
 always@(dplca_txop_claim)
 begin
     case(dplca_txop_claim)
-        2'b00 : dplca_txop_claim_ASCII = "UNCLAIMED";
-        2'b01 : dplca_txop_claim_ASCII = "CLAIMED";
+        1'b0 : dplca_txop_claim_ASCII = "UNCLAIMED";
+        1'b1 : dplca_txop_claim_ASCII = "CLAIMED";
         default : dplca_txop_claim_ASCII = "- X -";
     endcase
 end
