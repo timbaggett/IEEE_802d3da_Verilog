@@ -114,6 +114,7 @@ begin
         begin
             next_mod_148_8_state <= DISABLED;
         end
+		  // TODO: Add random wait!
         if(wait_beacon_timer_done && coordinator_role_allowed && (plca_status == FAIL))
         begin
             next_mod_148_8_state <= COORDINATOR;
