@@ -63,7 +63,7 @@ endtask
 /*                                                                    */
 /**********************************************************************/
 /*                                                                    */
-/* This  function takes  as  parameter 'ID'ù,  a transmit opportunity */
+/* This  function takes  as  parameter 'ID', a transmit opportunity   */
 /* integer number  in the range of 0 to 255. It returns the result of */
 /* the following  boolean expression:                                 */
 /*  dplca_txop_end * (dplca_txop_claim = CLAIMED) * (dplca_txop_id = ID) */

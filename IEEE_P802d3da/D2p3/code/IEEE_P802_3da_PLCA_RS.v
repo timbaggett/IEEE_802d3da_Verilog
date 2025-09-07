@@ -474,7 +474,7 @@ end
 /*                                                                    */
 /* This  constant  is  implementation  dependent  and  specifies  the */
 /* maximum length  of the  PLCA  RS  variable delay line  depicted in */
-/* Figure 148–2.                                                      */
+/* Figure 148-2.                                                      */
 /*                                                                    */
 /* Value: up to 396 bit times.                                        */
 /*                                                                    */
