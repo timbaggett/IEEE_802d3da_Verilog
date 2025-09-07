@@ -167,20 +167,20 @@ begin
 //
 //    top.dte_node_15.RS.plca_reset                  = true;
 //
-//    // Configure frame contents
-//    // Setting FCS to unknow causes MAC to generate FCS
-//
-//    destination_address                            = 48'hFF_FF_FF_FF_FF_FF;
-//    source_address                                 = 48'h55_44_33_22_11_00;
-//    frame_check_sequence                           = 32'hXX_XX_XX_XX;
-//
-//    mac_service_data_unit                          = {9000{8'h00}};
-//    mac_service_data_unit[15:0]                    = 16'd1500;
-//    mac_service_data_unit[100 * 8]                 = 1'bX;
-//
+    // Configure frame contents
+    // Setting FCS to unknow causes MAC to generate FCS
+
+    destination_address                            = 48'hFF_FF_FF_FF_FF_FF;
+    source_address                                 = 48'h55_44_33_22_11_00;
+    frame_check_sequence                           = 32'hXX_XX_XX_XX;
+
+    mac_service_data_unit                          = {9000{8'h00}};
+    mac_service_data_unit[15:0]                    = 16'd1500;
+    mac_service_data_unit[100 * 8]                 = 1'bX;
+
 //    #100_000;
 //
-//    fork 
+//    fork
 //
 //        for (i0 = 0; i0 < 10; i0 = i0 + 1)
 //        begin
@@ -252,7 +252,7 @@ begin
 //
 //    #2_000;
 //
-//    fork 
+//    fork
 //        for (i0 = 0; i0 < 10; i0 = i0 + 1)
 //        begin
 //            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
@@ -328,9 +328,9 @@ begin
 
     top.dte_node_0.RS.coordinator_role_allowed     = true;
 
-    #5_000_000;
+    #100_000;
 
-    fork 
+    fork
         for (i0 = 0; i0 < 20; i0 = i0 + 1)
         begin
             top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
