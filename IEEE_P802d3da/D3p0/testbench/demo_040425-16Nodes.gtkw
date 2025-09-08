@@ -1,0 +1,580 @@
+[*]
+[*] GTKWave Analyzer v3.3.121 (w)1999-2024 BSI
+[*] Sun Jul 27 17:06:50 2025
+[*]
+[dumpfile] "/home/timb/IEEE_802d3da_Verilog/IEEE_P802d3da/D2p3/testbench/IEEE802_3da_16Nodes.fst"
+[dumpfile_mtime] "Tue Jul 22 07:54:41 2025"
+[dumpfile_size] 74737895
+[savefile] "/home/timb/IEEE_802d3da_Verilog/IEEE_P802d3da/D2p3/testbench/demo_040425-16Nodes.gtkw"
+[timestart] 8961000000000
+[size] 1920 1108
+[pos] -46 -46
+*-35.584167 9108838250000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.dte_node_0.RS.
+[treeopen] top.dte_node_1.RS.
+[treeopen] top.dte_node_6.
+[treeopen] top.dte_node_6.RS.
+[sst_width] 344
+[signals_width] 401
+[sst_expanded] 1
+[sst_vpaned_height] 701
+@28
+top.BI_DA_N
+top.BI_DA_P
+@8022
+top.dte_node_0.MAC.attempts[4:0]
+top.dte_node_1.MAC.attempts[4:0]
+top.dte_node_2.MAC.attempts[4:0]
+top.dte_node_3.MAC.attempts[4:0]
+top.dte_node_4.MAC.attempts[4:0]
+top.dte_node_5.MAC.attempts[4:0]
+top.dte_node_6.MAC.attempts[4:0]
+top.dte_node_7.MAC.attempts[4:0]
+top.dte_node_8.MAC.attempts[4:0]
+top.dte_node_9.MAC.attempts[4:0]
+top.dte_node_10.MAC.attempts[4:0]
+top.dte_node_11.MAC.attempts[4:0]
+top.dte_node_12.MAC.attempts[4:0]
+top.dte_node_13.MAC.attempts[4:0]
+top.dte_node_14.MAC.attempts[4:0]
+top.dte_node_15.MAC.attempts[4:0]
+@28
+top.dte_node_0.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_1.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_2.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_3.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_4.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_5.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_6.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_7.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_8.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_9.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_10.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_11.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_12.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_13.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_14.MAC.MA_DATA_request.MA_DATA_request
+top.dte_node_15.MAC.MA_DATA_request.MA_DATA_request
+@200
+-
+@22
+top.dte_node_0.MAC.excessiveCollision[31:0]
+top.dte_node_1.MAC.excessiveCollision[31:0]
+top.dte_node_2.MAC.excessiveCollision[31:0]
+top.dte_node_3.MAC.excessiveCollision[31:0]
+top.dte_node_4.MAC.excessiveCollision[31:0]
+top.dte_node_5.MAC.excessiveCollision[31:0]
+top.dte_node_6.MAC.excessiveCollision[31:0]
+top.dte_node_7.MAC.excessiveCollision[31:0]
+top.dte_node_8.MAC.excessiveCollision[31:0]
+top.dte_node_9.MAC.excessiveCollision[31:0]
+top.dte_node_10.MAC.excessiveCollision[31:0]
+top.dte_node_11.MAC.excessiveCollision[31:0]
+top.dte_node_12.MAC.excessiveCollision[31:0]
+top.dte_node_13.MAC.excessiveCollision[31:0]
+top.dte_node_14.MAC.excessiveCollision[31:0]
+top.dte_node_15.MAC.excessiveCollision[31:0]
+@200
+-
+@22
+top.dte_node_0.MAC.excessiveDeferral[31:0]
+top.dte_node_1.MAC.excessiveDeferral[31:0]
+top.dte_node_2.MAC.excessiveDeferral[31:0]
+top.dte_node_3.MAC.excessiveDeferral[31:0]
+top.dte_node_4.MAC.excessiveDeferral[31:0]
+top.dte_node_5.MAC.excessiveDeferral[31:0]
+top.dte_node_6.MAC.excessiveDeferral[31:0]
+top.dte_node_7.MAC.excessiveDeferral[31:0]
+top.dte_node_8.MAC.excessiveDeferral[31:0]
+top.dte_node_9.MAC.excessiveDeferral[31:0]
+top.dte_node_10.MAC.excessiveDeferral[31:0]
+top.dte_node_11.MAC.excessiveDeferral[31:0]
+top.dte_node_12.MAC.excessiveDeferral[31:0]
+top.dte_node_13.MAC.excessiveDeferral[31:0]
+top.dte_node_14.MAC.excessiveDeferral[31:0]
+top.dte_node_15.MAC.excessiveDeferral[31:0]
+@28
+[color] 6
+top.dte_node_0.RS.TX_EN
+[color] 6
+top.dte_node_1.RS.TX_EN
+[color] 6
+top.dte_node_2.RS.TX_EN
+[color] 6
+top.dte_node_3.RS.TX_EN
+[color] 6
+top.dte_node_4.RS.TX_EN
+[color] 6
+top.dte_node_5.RS.TX_EN
+[color] 6
+top.dte_node_6.RS.TX_EN
+[color] 6
+top.dte_node_7.RS.TX_EN
+[color] 6
+top.dte_node_8.RS.TX_EN
+[color] 6
+top.dte_node_9.RS.TX_EN
+[color] 6
+top.dte_node_10.RS.TX_EN
+[color] 6
+top.dte_node_11.RS.TX_EN
+[color] 6
+top.dte_node_12.RS.TX_EN
+[color] 6
+top.dte_node_13.RS.TX_EN
+[color] 6
+top.dte_node_14.RS.TX_EN
+[color] 6
+top.dte_node_15.RS.TX_EN
+top.dte_node_0.RS.TX_ER
+top.dte_node_1.RS.TX_ER
+top.dte_node_2.RS.TX_ER
+top.dte_node_3.RS.TX_ER
+top.dte_node_4.RS.TX_ER
+top.dte_node_5.RS.TX_ER
+top.dte_node_6.RS.TX_ER
+top.dte_node_7.RS.TX_ER
+top.dte_node_8.RS.TX_ER
+top.dte_node_9.RS.TX_ER
+top.dte_node_10.RS.TX_ER
+top.dte_node_11.RS.TX_ER
+top.dte_node_12.RS.TX_ER
+top.dte_node_13.RS.TX_ER
+top.dte_node_14.RS.TX_ER
+top.dte_node_15.RS.TX_ER
+[color] 7
+top.dte_node_0.RS.COL
+[color] 7
+top.dte_node_1.RS.COL
+[color] 7
+top.dte_node_2.RS.COL
+[color] 7
+top.dte_node_3.RS.COL
+[color] 7
+top.dte_node_4.RS.COL
+[color] 7
+top.dte_node_5.RS.COL
+[color] 7
+top.dte_node_6.RS.COL
+[color] 7
+top.dte_node_7.RS.COL
+[color] 7
+top.dte_node_8.RS.COL
+[color] 7
+top.dte_node_9.RS.COL
+[color] 7
+top.dte_node_10.RS.COL
+[color] 7
+top.dte_node_11.RS.COL
+[color] 7
+top.dte_node_12.RS.COL
+[color] 7
+top.dte_node_13.RS.COL
+[color] 7
+top.dte_node_14.RS.COL
+[color] 7
+top.dte_node_15.RS.COL
+top.dte_node_0.CRS
+top.dte_node_1.CRS
+top.dte_node_2.CRS
+top.dte_node_3.CRS
+top.dte_node_4.CRS
+top.dte_node_5.CRS
+top.dte_node_6.CRS
+top.dte_node_7.CRS
+top.dte_node_8.CRS
+top.dte_node_9.CRS
+top.dte_node_10.CRS
+top.dte_node_11.CRS
+top.dte_node_12.CRS
+top.dte_node_13.CRS
+top.dte_node_14.CRS
+top.dte_node_15.CRS
+top.dte_node_0.RX_DV
+top.dte_node_0.RX_ER
+@200
+-
+@820
+top.dte_node_0.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_0.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_1.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_1.RS.rx_cmd_ASCII[103:0]
+top.dte_node_2.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_2.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_3.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_3.RS.rx_cmd_ASCII[103:0]
+top.dte_node_4.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_4.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_5.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_5.RS.rx_cmd_ASCII[103:0]
+top.dte_node_6.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_6.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_7.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_7.RS.rx_cmd_ASCII[103:0]
+top.dte_node_8.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_8.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_9.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_9.RS.rx_cmd_ASCII[103:0]
+top.dte_node_10.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_10.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_11.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_11.RS.rx_cmd_ASCII[103:0]
+top.dte_node_12.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_12.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_13.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_13.RS.rx_cmd_ASCII[103:0]
+top.dte_node_14.RS.tx_cmd_sync_ASCII[47:0]
+top.dte_node_14.RS.rx_cmd_ASCII[103:0]
+[color] 7
+top.dte_node_15.RS.tx_cmd_sync_ASCII[47:0]
+[color] 7
+top.dte_node_15.RS.rx_cmd_ASCII[103:0]
+@200
+-
+@22
+[color] 2
+top.dte_node_0.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_1.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_2.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_3.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_4.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_5.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_6.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_7.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_8.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_9.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_10.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_11.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_12.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_13.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_14.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_15.RS.local_nodeID[7:0]
+top.dte_node_0.RS.curID[7:0]
+top.dte_node_1.RS.curID[7:0]
+top.dte_node_2.RS.curID[7:0]
+top.dte_node_3.RS.curID[7:0]
+top.dte_node_4.RS.curID[7:0]
+top.dte_node_5.RS.curID[7:0]
+top.dte_node_6.RS.curID[7:0]
+top.dte_node_7.RS.curID[7:0]
+top.dte_node_8.RS.curID[7:0]
+top.dte_node_9.RS.curID[7:0]
+top.dte_node_10.RS.curID[7:0]
+top.dte_node_11.RS.curID[7:0]
+top.dte_node_12.RS.curID[7:0]
+top.dte_node_13.RS.curID[7:0]
+top.dte_node_14.RS.curID[7:0]
+top.dte_node_15.RS.curID[7:0]
+@200
+-
+@820
+top.dte_node_0.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_1.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_2.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_3.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_4.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_5.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_6.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_7.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_8.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_9.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_10.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_11.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_12.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_13.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_14.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+top.dte_node_15.RS.mod_inst_148_3.mod_148_3_state_ASCII[151:0]
+@200
+-
+@820
+top.dte_node_0.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_1.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_2.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_3.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_4.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_5.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_6.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_7.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_8.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_9.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_10.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_11.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_12.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_13.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_14.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+top.dte_node_15.RS.mod_inst_148_5.mod_148_5_state_ASCII[103:0]
+@200
+-
+@820
+top.dte_node_0.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_1.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_2.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_3.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_4.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_5.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_6.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_7.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_8.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_9.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_10.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_11.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_12.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_13.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_14.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+top.dte_node_15.RS.mod_inst_148_7.mod_148_7_state_ASCII[79:0]
+@200
+-
+@820
+top.dte_node_0.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_1.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_2.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_3.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_4.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_5.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_6.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_7.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_8.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_9.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_10.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_11.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_12.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_13.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_14.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+top.dte_node_15.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+@200
+-
+@820
+top.dte_node_0.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_1.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_2.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_3.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_4.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_5.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_6.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_7.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_8.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_9.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_10.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_11.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_12.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_13.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_14.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+top.dte_node_15.RS.mod_inst_148_9.mod_148_9_state_ASCII[103:0]
+@22
+[color] 2
+top.dte_node_0.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_1.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_14.RS.local_nodeID[7:0]
+[color] 2
+top.dte_node_15.RS.local_nodeID[7:0]
+top.dte_node_0.RS.mod_inst_148_8.plca_node_count[7:0]
+top.dte_node_15.RS.curID[7:0]
+@24
+top.dte_node_15.RS.mod_inst_148_8.dplca_txop_id[7:0]
+@820
+[color] 7
+top.dte_node_15.RS.mod_inst_148_9.dplca_txop_claim_ASCII[71:0]
+@24
+top.dte_node_15.RS.mod_inst_148_9.aging_cnt[15:0]
+@28
+top.dte_node_15.RS.dplca_txop_end
+top.dte_node_15.RS.dplca_txop_table_upd
+@22
+top.dte_node_15.RS.mod_inst_148_9.aging_cycles[15:0]
+top.dte_node_15.RS.mod_inst_148_9.aging_cnt[15:0]
+@200
+-- DTE 0
+@820
+[color] 7
+top.dte_node_0.RS.mod_inst_148_8.mod_148_8_state_ASCII[151:0]
+@28
+[color] 2
+top.dte_node_0.RS.dplca_aging
+@22
+top.dte_node_0.RS.aging_cnt[15:0]
+top.dte_node_0.RS.aging_cycles[15:0]
+@28
+top.dte_node_0.RS.dplca_new_age
+@22
+top.dte_node_0.RS.dplca_txop_id[7:0]
+@820
+[color] 7
+top.dte_node_0.RS.mod_inst_148_9.dplca_txop_claim_ASCII[71:0]
+@28
+top.dte_node_0.RS.dplca_txop_end
+top.dte_node_0.RS.dplca_txop_table_upd
+@22
+top.dte_node_0.RS.dplca_txop_node_count[7:0]
+top.dte_node_0.RS.plca_node_count[7:0]
+@200
+-txop_claim_table DTE 0
+@820
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[0].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[1].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[2].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[3].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[4].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[5].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[6].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[7].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[8].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[9].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[10].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[11].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[12].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[13].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[14].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[15].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[16].ASCII[71:0]
+[color] 7
+top.dte_node_0.RS.txop_claim_table_unpack[17].ASCII[71:0]
+@200
+-txop_claim_table DTE 1
+@820
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[0].ASCII[71:0]
+@821
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[1].ASCII[71:0]
+@820
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[2].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[3].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[4].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[5].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[6].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[7].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[8].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[9].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[10].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[11].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[12].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[13].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[14].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[15].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[16].ASCII[71:0]
+[color] 7
+top.dte_node_1.RS.txop_claim_table_unpack[17].ASCII[71:0]
+@200
+-txop_claim_table DTE 15
+@820
+[color] 7
+top.dte_node_6.RS.txop_claim_table_unpack[0].ASCII[71:0]
+@200
+-txop_claim_table DTE 15
+@820
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[0].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[1].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[2].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[3].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[4].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[5].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[6].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[7].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[8].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[9].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[10].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[11].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[12].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[13].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[14].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[15].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[16].ASCII[71:0]
+[color] 7
+top.dte_node_15.RS.txop_claim_table_unpack[17].ASCII[71:0]
+@200
+-dte1
+@28
+top.dte_node_1.RS.mod_inst_148_3.dplca_txop_end
+top.dte_node_1.RS.dplca_txop_table_upd
+@820
+[color] 7
+top.dte_node_1.RS.plca_status_ASCII[31:0]
+@22
+top.dte_node_1.RS.local_nodeID[7:0]
+top.dte_node_1.RS.dplca_txop_id[7:0]
+top.dte_node_1.RS.dplca_txop_node_count[7:0]
+@28
+top.dte_node_1.RS.dplca_new_age
+[pattern_trace] 1
+[pattern_trace] 0
