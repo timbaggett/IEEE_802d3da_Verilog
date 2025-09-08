@@ -41,8 +41,7 @@ module           mod_148_3(
                  dplca_txop_end,
                  dplca_txop_id,
                  dplca_txop_node_count,
-                 bc,
-                 plca_tx_beacon
+                 bc
                  );
 
 input            plca_reset;
@@ -78,7 +77,6 @@ output           dplca_txop_end;
 output[7:0]      dplca_txop_id;
 output[7:0]      dplca_txop_node_count;
 output[7:0]      bc;
-output           plca_tx_beacon;
 
 reg[3:0]         mod_148_3_state;
 reg[3:0]         next_mod_148_3_state;
@@ -91,7 +89,6 @@ reg              dplca_txop_end;
 reg[7:0]         dplca_txop_id;
 reg[7:0]         dplca_txop_node_count;
 reg[7:0]         bc;
-reg              plca_tx_beacon;
 
 `ifdef simulate
 `include "IEEE_P802_3da_param.v"
@@ -348,7 +345,6 @@ begin
         dplca_txop_end = FALSE;
         dplca_txop_id = 0;
         dplca_txop_node_count = plca_node_count;
-        plca_tx_beacon = FALSE;
     end
 
     RESYNC:
@@ -367,7 +363,6 @@ begin
         -> plca.mod_inst_148_4_4_timer.beacon_timer.start;
         tx_cmd = BEACON;
         plca_active = TRUE;
-        plca_tx_beacon = TRUE;
     end
 
     SYNCING:
@@ -445,15 +440,6 @@ begin
 
     mod_148_3_state = next_mod_148_3_state;
 
-end
-
-
-always@(tx_cmd, rx_cmd)
-begin
-        if( (tx_cmd != BEACON) && (rx_cmd != BEACON) )
-        begin
-                plca_tx_beacon = FALSE;
-        end
 end
 
 
