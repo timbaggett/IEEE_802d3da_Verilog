@@ -135,7 +135,7 @@ begin
 
     SYNCING:
     begin
-        if(RSCD && ((RXn == ESD) || ((RXn != SSD) && (RXn != SYNC) && (!fc_supported))))
+        if(RSCD && ((RXn == ESD) || (RXn == SILENCE) || ((RXn != SSD) && (RXn != SYNC) && (!fc_supported))))
         begin
             next_mod_147_7_state <= WAIT_SYNC;
         end
@@ -155,7 +155,7 @@ begin
 
     COMMIT_STATE:
     begin
-        if(RSCD && ((RXn == ESD) || ((RXn != SSD) && (RXn != SYNC) && (!fc_supported))))
+        if(RSCD && ((RXn == ESD) || (RXn == SILENCE) || ((RXn != SSD) && (RXn != SYNC) && (!fc_supported))))
         begin
             next_mod_147_7_state <= WAIT_SYNC;
         end
