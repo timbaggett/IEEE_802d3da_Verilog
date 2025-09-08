@@ -13,6 +13,7 @@ module           mod_148_8(
                  dplca_en,
                  plca_en,
                  wait_beacon_timer_done,
+                 beacon_timeout_timer_done,
                  coordinator_role_allowed,
                  plca_status,
                  rx_cmd,
@@ -33,6 +34,7 @@ input            plca_reset;
 input            dplca_en;
 input            plca_en;
 input            wait_beacon_timer_done;
+input            beacon_timeout_timer_done;
 input            coordinator_role_allowed;
 input            plca_status;
 input[1:0]       rx_cmd;
@@ -84,7 +86,7 @@ parameter        FOLLOWER            =  4'b1000;
 /* inputs.                                                            */
 /*                                                                    */
 
-always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table, plca.mod_inst_148_4_7_func.CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_CLAIM_change)
+always@(mod_148_8_state, plca_reset, dplca_en, plca_en, wait_beacon_timer_done, beacon_timeout_timer_done, coordinator_role_allowed, plca_status, rx_cmd, dplca_txop_table_upd, plca_node_count, dplca_new_age, tx_cmd, local_nodeID, dplca_txop_id, dplca_txop_node_count, txop_claim_table, plca.mod_inst_148_4_7_func.CLAIMING_change, plca.mod_inst_148_4_7_func.MAX_CLAIM_change)
 
 begin
 
@@ -158,6 +160,10 @@ begin
         begin
             next_mod_148_8_state <= LOOPBACK_RX;
         end
+        if(beacon_timeout_timer_done)
+        begin
+            next_mod_148_8_state <= DISABLED;
+        end
     end
 
     LOOPBACK_RX:
@@ -227,7 +233,7 @@ begin
 
     WAIT_BEACON:
     begin
-        plca.local_nodeID = 254;	/* Initialize to highest PLCA TO to avoid CSMA/CD */
+        plca.local_nodeID = 254;    /* Initialize to highest PLCA TO to avoid CSMA/CD */
         plca.plca_node_count = 8;
     end
 
@@ -243,9 +249,14 @@ begin
         $display("time = %0t %m REDUCE_NODE_COUNT: Reducing plca_node_count to 0x%02h", $time, plca.plca_node_count);
     end
 
+    LOOPBACK_TX:
+    begin
+        -> plca.mod_inst_148_4_7_timer.beacon_timeout_timer.start;
+    end
+
     LEARNING:
     begin
-        plca.local_nodeID = 254;	/* Initialize to highest PLCA TO to avoid CSMA/CD */
+        plca.local_nodeID = 254;    /* Initialize to highest PLCA TO to avoid CSMA/CD */
         dplca_aging = ON;
     end
 

@@ -720,7 +720,9 @@ mod_148_4_7_func mod_inst_148_4_7_func();
 
 mod_148_4_7_timer mod_inst_148_4_7_timer(
                 .wait_beacon_timer_done(wait_beacon_timer_done),
-                .wait_beacon_timer_not_done(wait_beacon_timer_not_done)
+                .beacon_timeout_timer_done(beacon_timeout_timer_done),
+                .wait_beacon_timer_not_done(wait_beacon_timer_not_done),
+                .beacon_timeout_timer_not_done(beacon_timeout_timer_not_done)
                  );
 
 wire[3:0]        mod_148_8_state;
@@ -731,6 +733,7 @@ mod_148_8 mod_inst_148_8(
                  .dplca_en(dplca_en),
                  .plca_en(plca_en),
                  .wait_beacon_timer_done(wait_beacon_timer_done),
+                 .beacon_timeout_timer_done(beacon_timeout_timer_done),
                  .coordinator_role_allowed(coordinator_role_allowed),
                  .plca_status(plca_status),
                  .rx_cmd(rx_cmd),
