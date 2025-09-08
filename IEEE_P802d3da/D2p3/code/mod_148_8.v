@@ -241,6 +241,7 @@ begin
     REDUCE_NODE_COUNT:
     begin
         plca.plca_node_count = plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table) + 2;
+        $display("time = %0t %m REDUCE_NODE_COUNT: Reducing plca_node_count to 0x%02h", $time, plca.plca_node_count);
     end
 
     LEARNING:
@@ -252,6 +253,7 @@ begin
     INCREASE_NODE_COUNT:
     begin
         plca.plca_node_count = plca_node_count + 1;
+        $display("time = %0t %m INCREASE_NODE_COUNT: Increasing plca_node_count to 0x%02h", $time, plca.plca_node_count);
     end
 
     FOLLOWER:
