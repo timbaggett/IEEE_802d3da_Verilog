@@ -9,7 +9,7 @@
 /*                                                                    */
 /* All timers operate in  the  manner  described in 14.2.3.2 with the */
 /* following addition: a timer  is  reset  and  stops  counting  upon */
-/* entering a state where “stop x_timer” is asserted.                 */
+/* entering a state where "stop x_timer" is asserted.                 */
 /*                                                                    */
 /* 14.2.3.2 State diagram timers                                      */
 /*                                                                    */
@@ -62,6 +62,83 @@ end
 always @(top.new_values)
 begin
     timer_duration = $urandom_range(timer_duration_max, timer_duration_min) - 1;
+end
+
+
+initial
+begin
+    #0.001;
+    disable timer_block;
+    timer_done     = FALSE;
+    timer_not_done = TRUE;
+end
+
+always @(stop)
+begin
+    disable timer_block;
+    timer_done     = FALSE;
+    timer_not_done = TRUE;
+end
+
+always @(start)
+begin
+    disable timer_block;
+    timer_done     = FALSE;
+    timer_not_done = TRUE;
+    #1;
+    -> start_timer;
+end
+
+always @(start_timer)
+begin : timer_block
+   #(timer_duration);
+   timer_done     = TRUE;
+   timer_not_done = FALSE;
+end
+
+`endif
+
+endmodule
+
+/**********************************************************************/
+/*                                                                    */
+/*                                                                    */
+/**********************************************************************/
+
+module IEEE802_3_timer_rand(
+            timer_done,
+            timer_not_done
+            );
+
+parameter   timer_duration_min  = 0;
+parameter   timer_duration_max  = 0;
+parameter   timer_duration_mult = 0;
+
+output      timer_not_done;
+output      timer_done;
+
+reg         timer_not_done;
+reg         timer_done;
+
+parameter   TRUE  = 1,
+            FALSE = 0;
+
+`ifdef simulate
+
+event       start;
+event       stop;
+event       start_timer;
+
+real        timer_duration;
+
+initial
+begin
+    timer_duration = ($urandom_range(timer_duration_max, timer_duration_min) - 1) * timer_duration_mult;
+end
+
+always @(top.new_values)
+begin
+    timer_duration = ($urandom_range(timer_duration_max, timer_duration_min) - 1) * timer_duration_mult;
 end
 
 

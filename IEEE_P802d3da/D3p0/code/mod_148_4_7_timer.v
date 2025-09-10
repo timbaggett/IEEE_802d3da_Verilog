@@ -21,10 +21,11 @@ output           wait_beacon_timer_not_done;
 /* wait_beacon_timer                                                    */
 /*                                                                      */
 
-parameter       wait_beacon_timer_duration_min = 3900;  // 3900 ns 
-parameter       wait_beacon_timer_duration_max = 4100;  // 4100 ns 
+parameter       wait_beacon_timer_duration_min  = 40;    // 40 BT
+parameter       wait_beacon_timer_duration_max  = 295;   // 295 BT
+parameter       wait_beacon_timer_duration_mult = 400;   // 400 ns
 
-IEEE802_3_timer #(wait_beacon_timer_duration_min, wait_beacon_timer_duration_max)
+IEEE802_3_timer_rand #(wait_beacon_timer_duration_min, wait_beacon_timer_duration_max, wait_beacon_timer_duration_mult)
 wait_beacon_timer(
                .timer_done(wait_beacon_timer_done),
                .timer_not_done(wait_beacon_timer_not_done));
