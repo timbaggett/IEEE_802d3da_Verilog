@@ -216,7 +216,7 @@ begin
         end
     end
 
-    PICK_INCREMENT:
+    PICK_WAIT_INCREMENT:
     begin
         if(rx_cmd != BEACON)
         begin
