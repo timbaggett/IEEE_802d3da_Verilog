@@ -93,7 +93,7 @@ endfunction
 /*                                                                    */
 /**********************************************************************/
 
-function      MAX_CLAIM_function;
+function[7:0] MAX_CLAIM_function;
 input         null_value;
 integer       i;
 begin
@@ -106,7 +106,7 @@ begin
 // Need to add exclusion for ID claimed by the local node
 // Need to define what value is returned if no CLAIMED found
 
-        if(plca.txop_claim_table_new[i] == CLAIMED)
+        if(plca.txop_claim_table[i] == CLAIMED)
         begin
             MAX_CLAIM_function = i;
         end

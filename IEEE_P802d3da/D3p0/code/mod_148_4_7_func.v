@@ -106,7 +106,7 @@ endfunction
 
 event         MAX_CLAIM_change;
 
-function      MAX_CLAIM;
+function[7:0] MAX_CLAIM;
 input         null_value;
 begin
 
