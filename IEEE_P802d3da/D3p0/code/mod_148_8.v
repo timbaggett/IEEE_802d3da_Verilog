@@ -188,11 +188,7 @@ begin
         end
         if(dplca_txop_table_upd && dplca_new_age && (plca_status == OK))
         begin
-`ifdef USE_PICK_WAIT
             next_mod_148_8_state <= PICK_WAIT;
-`else
-            next_mod_148_8_state <= FOLLOWER;
-`endif
         end
     end
 
@@ -236,12 +232,7 @@ begin
         end
         if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table)) )))
         begin
-`ifdef USE_PICK_WAIT
             next_mod_148_8_state <= PICK_WAIT;
-`else
-            next_mod_148_8_state <= !FOLLOWER;
-            next_mod_148_8_state <= FOLLOWER;
-`endif
         end
     end
 
