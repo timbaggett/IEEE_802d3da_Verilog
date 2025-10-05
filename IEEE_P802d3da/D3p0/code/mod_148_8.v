@@ -25,6 +25,7 @@ module           mod_148_8(
                  dplca_txop_id,
                  dplca_txop_node_count,
                  txop_claim_table,
+                 aging_cycles,
 
                  mod_148_8_state,
                  dplca_aging
@@ -46,6 +47,7 @@ input[7:0]       local_nodeID;
 input[7:0]       dplca_txop_id;
 input[7:0]       dplca_txop_node_count;
 input[255:0]     txop_claim_table;
+input[15:0]      aging_cycles;
 
 output[3:0]      mod_148_8_state;
 output           dplca_aging;
@@ -53,6 +55,8 @@ output           dplca_aging;
 reg[3:0]         mod_148_8_state;
 reg[3:0]         next_mod_148_8_state;
 reg              dplca_aging;
+reg[15:0]        pick_wait_cycles;
+reg[15:0]        pick_wait_count;
 
 `ifdef simulate
 `include "IEEE_P802_3da_param.v"
@@ -66,7 +70,9 @@ parameter        LOOPBACK_TX         =  4'b0100;
 parameter        LOOPBACK_RX         =  4'b0101;
 parameter        LEARNING            =  4'b0110;
 parameter        INCREASE_NODE_COUNT =  4'b0111;
-parameter        FOLLOWER            =  4'b1000;
+parameter        PICK_WAIT           =  4'b1000;
+parameter        PICK_WAIT_INCREMENT =  4'b1001;
+parameter        FOLLOWER            =  4'b1010;
 
 /*                                                                    */
 /* IEEE 802.3 state diagram operation                                 */
@@ -182,7 +188,11 @@ begin
         end
         if(dplca_txop_table_upd && dplca_new_age && (plca_status == OK))
         begin
+`ifdef USE_PICK_WAIT
+            next_mod_148_8_state <= PICK_WAIT;
+`else
             next_mod_148_8_state <= FOLLOWER;
+`endif
         end
     end
 
@@ -194,6 +204,30 @@ begin
         end
     end
 
+    PICK_WAIT:
+    begin
+        if(rx_cmd == BEACON)
+        begin
+            next_mod_148_8_state <= PICK_WAIT_INCREMENT;
+        end
+        if(pick_wait_count >= pick_wait_cycles)
+        begin
+            next_mod_148_8_state <= FOLLOWER;
+        end
+        if(plca_status == FAIL)
+        begin
+            next_mod_148_8_state <= DISABLED;
+        end
+    end
+
+    PICK_INCREMENT:
+    begin
+        if(rx_cmd != BEACON)
+        begin
+            next_mod_148_8_state <= PICK_WAIT;
+        end
+    end
+
     FOLLOWER:
     begin
         if(plca_status == FAIL)
@@ -202,8 +236,12 @@ begin
         end
         if(dplca_txop_table_upd && (plca_status == OK) && ( plca.mod_inst_148_4_7_func.CLAIMING(local_nodeID) || ( (dplca_txop_id == 0) && (dplca_txop_node_count <= local_nodeID) ) || ( dplca_new_age && (local_nodeID > plca.mod_inst_148_4_7_func.MAX_CLAIM(txop_claim_table)) )))
         begin
+`ifdef USE_PICK_WAIT
+            next_mod_148_8_state <= PICK_WAIT;
+`else
             next_mod_148_8_state <= !FOLLOWER;
             next_mod_148_8_state <= FOLLOWER;
+`endif
         end
     end
 
@@ -258,6 +296,8 @@ begin
     begin
         plca.local_nodeID = 254;    /* Initialize to highest PLCA TO to avoid CSMA/CD */
         dplca_aging = ON;
+        pick_wait_cycles = $urandom_range(0, aging_cycles/2);
+        pick_wait_count = 0;
     end
 
     INCREASE_NODE_COUNT:
@@ -266,9 +306,20 @@ begin
         $display("time = %0t %m INCREASE_NODE_COUNT: Increasing plca_node_count to 0x%02h", $time, plca.plca_node_count);
     end
 
+    PICK_WAIT:
+    begin
+    end
+
+    PICK_WAIT_INCREMENT:
+    begin
+        pick_wait_count = pick_wait_count + 1;
+    end
+
     FOLLOWER:
     begin
         plca.local_nodeID = plca.mod_inst_148_4_7_func.PICK_FREE_TXOP(txop_claim_table);
+        pick_wait_cycles = $urandom_range(0, aging_cycles/2);
+        pick_wait_count = 0;
     end
 
     endcase
@@ -330,7 +381,9 @@ begin
         4'b0101 : mod_148_8_state_ASCII = "LOOPBACK_RX";
         4'b0110 : mod_148_8_state_ASCII = "LEARNING";
         4'b0111 : mod_148_8_state_ASCII = "INCREASE_NODE_COUNT";
-        4'b1000 : mod_148_8_state_ASCII = "FOLLOWER";
+        4'b1000 : mod_148_8_state_ASCII = "PICK_WAIT";
+        4'b1001 : mod_148_8_state_ASCII = "PICK_WAIT_INCREMENT";
+        4'b1010 : mod_148_8_state_ASCII = "FOLLOWER";
         default : mod_148_8_state_ASCII = "- X -";
     endcase
 end

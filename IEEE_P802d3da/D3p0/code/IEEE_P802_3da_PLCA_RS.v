@@ -743,6 +743,7 @@ mod_148_8 mod_inst_148_8(
                  .dplca_txop_id(dplca_txop_id),
                  .dplca_txop_node_count(dplca_txop_node_count),
                  .txop_claim_table(txop_claim_table),
+                 .aging_cycles(aging_cycles),
 
                  .mod_148_8_state(mod_148_8_state),
                  .dplca_aging(dplca_aging),
