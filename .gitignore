@@ -3,4 +3,5 @@
 *.dump
 *.ve
 *.fst
+*.fst.hier
 
