@@ -521,6 +521,9 @@ delay_element_COL(
 
 reg              loc_rcv_status;
 
+reg              fc_supported;
+initial          fc_supported = false;
+
 wire             symb_timer_done;
 wire             unjab_timer_done;
 wire             xmit_max_timer_done;

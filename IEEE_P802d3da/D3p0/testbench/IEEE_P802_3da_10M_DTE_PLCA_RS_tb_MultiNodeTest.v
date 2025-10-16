@@ -133,6 +133,23 @@ begin
     top.dte_node_14.PHY.delay_type                 = typical_delay;
     top.dte_node_15.PHY.delay_type                 = typical_delay;
 
+    top.dte_node_0.PHY.fc_supported                = false;
+    top.dte_node_1.PHY.fc_supported                = false;
+    top.dte_node_2.PHY.fc_supported                = false;
+    top.dte_node_3.PHY.fc_supported                = false;
+    top.dte_node_4.PHY.fc_supported                = false;
+    top.dte_node_5.PHY.fc_supported                = false;
+    top.dte_node_6.PHY.fc_supported                = false;
+    top.dte_node_7.PHY.fc_supported                = false;
+    top.dte_node_8.PHY.fc_supported                = false;
+    top.dte_node_9.PHY.fc_supported                = false;
+    top.dte_node_10.PHY.fc_supported               = false;
+    top.dte_node_11.PHY.fc_supported               = false;
+    top.dte_node_12.PHY.fc_supported               = false;
+    top.dte_node_13.PHY.fc_supported               = false;
+    top.dte_node_14.PHY.fc_supported               = false;
+    top.dte_node_15.PHY.fc_supported               = false;
+
 /**********************************************************************/
 /*                                                                    */
 /* Operate in CSMA/CD mode, PLCA disabled                             */
@@ -415,7 +432,7 @@ begin
 //  top.dte_node_15.RS.aging_cycles                = 32'd32;
 
     // Have multiple nodes which can become coordinator to
-	// to observe any BEACON collisions, etc.
+   // to observe any BEACON collisions, etc.
     top.dte_node_0.RS.coordinator_role_allowed     = true;
     //top.dte_node_2.RS.coordinator_role_allowed     = true;
 
