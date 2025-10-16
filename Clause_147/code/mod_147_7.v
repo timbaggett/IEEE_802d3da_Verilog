@@ -102,7 +102,7 @@ begin
 
     next_mod_147_7_state <= mod_147_7_state;
 
-    if(pcs_reset || (RXn == SILENCE) || (transmitting && (duplex_mode == DUPLEX_HALF)) || (link_control == DISABLE))
+    if(pcs_reset || (transmitting && (duplex_mode == DUPLEX_HALF)) || (link_control == DISABLE))
     begin
         next_mod_147_7_state <= !WAIT_SYNC;
         next_mod_147_7_state <= WAIT_SYNC;
