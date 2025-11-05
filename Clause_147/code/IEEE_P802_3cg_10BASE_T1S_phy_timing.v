@@ -49,7 +49,7 @@ parameter MDI_input_to_CRS_asserted_min         =   400;
 parameter MDI_input_to_CRS_asserted_max         = 1_040;
 
 parameter MDI_input_to_CRS_deasserted_min       =   640;
-parameter MDI_input_to_CRS_deasserted_max       = 1_128;
+parameter MDI_input_to_CRS_deasserted_max       = 1_120;
 
 /*                                                                    */
 /* +----------------------------------------+-------+-------+-------+ */

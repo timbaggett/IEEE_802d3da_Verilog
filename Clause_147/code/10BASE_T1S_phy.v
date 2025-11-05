@@ -274,8 +274,8 @@ delay_element_tx      (.delay_element_input_P(BI_DA_P_tx),
 /* point, equal to 57/20 * symbol time = 57/20 * 400 = 1140 ns.       */
 /*                                                                    */
 
-diff_delay_element   #(.delay_value_max(MDI_input_to_RX_DV_asserted_max - 1_120), 
-                       .delay_value_min(MDI_input_to_RX_DV_asserted_min - 1_120)
+diff_delay_element   #(.delay_value_max(MDI_input_to_RX_DV_asserted_max - 1_580), 
+                       .delay_value_min(MDI_input_to_RX_DV_asserted_min - 1_580)
                       )
 delay_element_rx      (.delay_element_input_P(BI_DA_P_rx_in),
                        .delay_element_input_N(BI_DA_N_rx_in),
@@ -466,7 +466,9 @@ begin
     end
 end
 
-delay_element   #(MDI_input_to_CRS_asserted_max, MDI_input_to_CRS_deasserted_min)
+delay_element   #(.delay_value_max(MDI_input_to_CRS_asserted_max), 
+                  .delay_value_min(MDI_input_to_CRS_deasserted_min)
+                 )
 delay_element_CRS(
                  .delay_element_input(raw_CRS),
                  .delay_element_output(CRS),
@@ -510,7 +512,9 @@ wire             COL;
 wire             raw_COL;
 assign           raw_COL = collision;
 
-delay_element   #(MDI_input_to_COL_deasserted_max, MDI_input_to_COL_deasserted_min)
+delay_element   #(.delay_value_max(MDI_input_to_COL_deasserted_max),
+                  .delay_value_min(MDI_input_to_COL_deasserted_min)
+                 )
 delay_element_COL(
                  .delay_element_input(raw_COL),
                  .delay_element_output(COL),
