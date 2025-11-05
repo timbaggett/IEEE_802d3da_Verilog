@@ -135,40 +135,12 @@ begin
 
 /**********************************************************************/
 /*                                                                    */
-/* Operate in CSMA/CD mode, PLCA disabled                             */
+/* Configure MAC                                                      */
 /*                                                                    */
 /**********************************************************************/
-//
-//    #200;
-//
-//    // Configure and then endable node 0
-//
-//    top.dte_node_0.MAC.transmitEnabled             = true;
-//    top.dte_node_0.MAC.receiveEnabled              = true;
-//
-//    top.dte_node_0.RS.plca_reset                   = true;
-//
-//    // Configure and then endable node 1
-//
-//    top.dte_node_1.MAC.transmitEnabled             = true;
-//    top.dte_node_1.MAC.receiveEnabled              = true;
-//
-//    top.dte_node_1.RS.plca_reset                   = true;
-//
-//    // Configure and then endable node 14
-//
-//    top.dte_node_14.MAC.transmitEnabled            = true;
-//    top.dte_node_14.MAC.receiveEnabled             = true;
-//
-//    top.dte_node_14.RS.plca_reset                  = true;
-//
-//    // Configure and then endable node 15
-//
-//    top.dte_node_15.MAC.transmitEnabled            = true;
-//    top.dte_node_15.MAC.receiveEnabled             = true;
-//
-//    top.dte_node_15.RS.plca_reset                  = true;
-//
+
+    #200;
+
     // Configure frame contents
     // Setting FCS to unknow causes MAC to generate FCS
 
@@ -180,35 +152,6 @@ begin
     mac_service_data_unit[15:0]                    = 16'd1500;
     mac_service_data_unit[100 * 8]                 = 1'bX;
 
-//    #100_000;
-//
-//    fork
-//
-//        for (i0 = 0; i0 < 10; i0 = i0 + 1)
-//        begin
-//            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 0 MA_DATA.request serviced");
-//        end
-//
-//        for (i1 = 0; i1 < 10; i1 = i1 + 1)
-//        begin
-//            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 1 MA_DATA.request serviced");
-//        end
-//
-//        for (i14 = 0; i14 < 10; i14 = i14 + 1)
-//        begin
-//            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 14 MA_DATA.request serviced");
-//        end
-//
-//        for (i15 = 0; i15 < 10; i15 = i15 + 1)
-//        begin
-//            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " MA_DATA.request serviced");
-//        end
-//
-//    join
 
 /**********************************************************************/
 /*                                                                    */
@@ -216,95 +159,8 @@ begin
 /*                                                                    */
 /**********************************************************************/
 
-//
-//    #1_000_000;
-//
-//    top.dte_node_0.MAC.transmitEnabled             = false;
-//    top.dte_node_1.MAC.transmitEnabled             = false;
-//    top.dte_node_14.MAC.transmitEnabled            = false;
-//    top.dte_node_15.MAC.transmitEnabled            = false;
-//
-//    #100
-//
-//    top.dte_node_0.MAC.transmitEnabled             = true;
-//    top.dte_node_1.MAC.transmitEnabled             = true;
-//    top.dte_node_14.MAC.transmitEnabled            = true;
-//    top.dte_node_15.MAC.transmitEnabled            = true;
-//
-//    #100
-//
-//    top.dte_node_0.RS.plca_reset                   = false;
-//    top.dte_node_1.RS.plca_reset                   = false;
-//    top.dte_node_14.RS.plca_reset                  = false;
-//    top.dte_node_15.RS.plca_reset                  = false;
-//
-//    #100
-//
-//    force top.dte_node_0.RS.local_nodeID           = 0;
-//    top.dte_node_0.RS.plca_en                      = true;
-//
-//    force top.dte_node_1.RS.local_nodeID           = 1;
-//    top.dte_node_1.RS.plca_en                      = true;
-//
-//    force top.dte_node_14.RS.local_nodeID          = 2;
-//    top.dte_node_14.RS.plca_en                     = true;
-//
-//    force top.dte_node_15.RS.local_nodeID          = 3;
-//    top.dte_node_15.RS.plca_en                     = true;
-//
-//    #2_000;
-//
-//    fork
-//        for (i0 = 0; i0 < 10; i0 = i0 + 1)
-//        begin
-//            top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 0 MA_DATA.request serviced");
-//        end
-//
-//        for (i1 = 0; i1 < 10; i1 = i1 + 1)
-//        begin
-//            top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 1 MA_DATA.request serviced");
-//        end
-//
-//        for (i14 = 0; i14 < 10; i14 = i14 + 1)
-//        begin
-//            top.dte_node_14.MAC.MA_DATA_request(destination_address, source_address + 14, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 14 MA_DATA.request serviced");
-//        end
-//
-//        for (i15 = 0; i15 < 10; i15 = i15 + 1)
-//        begin
-//            top.dte_node_15.MAC.MA_DATA_request(destination_address, source_address + 15, mac_service_data_unit, frame_check_sequence);
-//            $display($time, " Node 15 MA_DATA.request serviced");
-//        end
-//
-//    join
 
-/**********************************************************************/
-/*                                                                    */
-/* Operate with D-PLCA enabled                                        */
-/*                                                                    */
-/**********************************************************************/
-
-    release top.dte_node_0.RS.local_nodeID;
-    release top.dte_node_1.RS.local_nodeID;
-    release top.dte_node_2.RS.local_nodeID;
-    release top.dte_node_3.RS.local_nodeID;
-    release top.dte_node_4.RS.local_nodeID;
-    release top.dte_node_5.RS.local_nodeID;
-    release top.dte_node_6.RS.local_nodeID;
-    release top.dte_node_7.RS.local_nodeID;
-    release top.dte_node_8.RS.local_nodeID;
-    release top.dte_node_9.RS.local_nodeID;
-    release top.dte_node_10.RS.local_nodeID;
-    release top.dte_node_11.RS.local_nodeID;
-    release top.dte_node_12.RS.local_nodeID;
-    release top.dte_node_13.RS.local_nodeID;
-    release top.dte_node_14.RS.local_nodeID;
-    release top.dte_node_15.RS.local_nodeID;  
-
-    #100
+    #100;
 
     top.dte_node_0.RS.plca_reset                   = true;
     top.dte_node_1.RS.plca_reset                   = true;
@@ -330,34 +186,17 @@ begin
     top.dte_node_4.MAC.transmitEnabled             = false;
     top.dte_node_5.MAC.transmitEnabled             = false;
     top.dte_node_6.MAC.transmitEnabled             = false;
-    top.dte_node_7.MAC.transmitEnabled             = false;
-    top.dte_node_8.MAC.transmitEnabled             = false;
-    top.dte_node_9.MAC.transmitEnabled             = false;
-    top.dte_node_10.MAC.transmitEnabled            = false;
-    top.dte_node_11.MAC.transmitEnabled            = false;
-    top.dte_node_12.MAC.transmitEnabled            = false;
-    top.dte_node_13.MAC.transmitEnabled            = false;
-    top.dte_node_14.MAC.transmitEnabled            = false;
-    top.dte_node_15.MAC.transmitEnabled            = false;
+//  top.dte_node_7.MAC.transmitEnabled             = false;
+//  top.dte_node_8.MAC.transmitEnabled             = false;
+//  top.dte_node_9.MAC.transmitEnabled             = false;
+//  top.dte_node_10.MAC.transmitEnabled            = false;
+//  top.dte_node_11.MAC.transmitEnabled            = false;
+//  top.dte_node_12.MAC.transmitEnabled            = false;
+//  top.dte_node_13.MAC.transmitEnabled            = false;
+//  top.dte_node_14.MAC.transmitEnabled            = false;
+//  top.dte_node_15.MAC.transmitEnabled            = false;
 
     #100
-
-    top.dte_node_0.RS.plca_reset                   = false;
-    top.dte_node_1.RS.plca_reset                   = false;
-    top.dte_node_2.RS.plca_reset                   = false;
-    top.dte_node_3.RS.plca_reset                   = false;
-    top.dte_node_4.RS.plca_reset                   = false;
-    top.dte_node_5.RS.plca_reset                   = false;
-    top.dte_node_6.RS.plca_reset                   = false;
-//  top.dte_node_7.RS.plca_reset                   = false;
-//  top.dte_node_8.RS.plca_reset                   = false;
-//  top.dte_node_9.RS.plca_reset                   = false;
-//  top.dte_node_10.RS.plca_reset                  = false;
-//  top.dte_node_11.RS.plca_reset                  = false;
-//  top.dte_node_12.RS.plca_reset                  = false;
-//  top.dte_node_13.RS.plca_reset                  = false;
-//  top.dte_node_14.RS.plca_reset                  = false;
-//  top.dte_node_15.RS.plca_reset                  = false;
 
     top.dte_node_0.MAC.transmitEnabled             = true;
     top.dte_node_1.MAC.transmitEnabled             = true;
@@ -378,122 +217,176 @@ begin
 
     #100
 
+    top.dte_node_0.RS.plca_reset                   = false;
+    top.dte_node_1.RS.plca_reset                   = false;
+    top.dte_node_2.RS.plca_reset                   = false;
+    top.dte_node_3.RS.plca_reset                   = false;
+    top.dte_node_4.RS.plca_reset                   = false;
+    top.dte_node_5.RS.plca_reset                   = false;
+    top.dte_node_6.RS.plca_reset                   = false;
+    top.dte_node_7.RS.plca_reset                   = false;
+    top.dte_node_8.RS.plca_reset                   = false;
+    top.dte_node_9.RS.plca_reset                   = false;
+//  top.dte_node_10.RS.plca_reset                  = false;
+//  top.dte_node_11.RS.plca_reset                  = false;
+//  top.dte_node_12.RS.plca_reset                  = false;
+//  top.dte_node_13.RS.plca_reset                  = false;
+//  top.dte_node_14.RS.plca_reset                  = false;
+//  top.dte_node_15.RS.plca_reset                  = false;
+
+    #100
+
+    top.dte_node_0.RS.dplca_en                     = false;
+    top.dte_node_1.RS.dplca_en                     = false;
+    top.dte_node_2.RS.dplca_en                     = false;
+    top.dte_node_3.RS.dplca_en                     = false;
+    top.dte_node_4.RS.dplca_en                     = false;
+    top.dte_node_5.RS.dplca_en                     = false;
+    top.dte_node_6.RS.dplca_en                     = false;
+//  top.dte_node_7.RS.dplca_en                     = false;
+//  top.dte_node_8.RS.dplca_en                     = false;
+//  top.dte_node_9.RS.dplca_en                     = false;
+//  top.dte_node_10.RS.dplca_en                    = false;
+//  top.dte_node_11.RS.dplca_en                    = false;
+//  top.dte_node_12.RS.dplca_en                    = false;
+//  top.dte_node_13.RS.dplca_en                    = false;
+//  top.dte_node_14.RS.dplca_en                    = false;
+//  top.dte_node_15.RS.dplca_en                    = false;
+//
+    #100
+    top.dte_node_0.RS.plca_node_count              = 8'h07;
+
+    force top.dte_node_0.RS.local_nodeID           = 0;
     top.dte_node_0.RS.plca_en                      = true;
+
+    force top.dte_node_1.RS.local_nodeID           = 1;
     top.dte_node_1.RS.plca_en                      = true;
+
+    force top.dte_node_2.RS.local_nodeID           = 2;
     top.dte_node_2.RS.plca_en                      = true;
+
+    force top.dte_node_3.RS.local_nodeID           = 3;
     top.dte_node_3.RS.plca_en                      = true;
+
+    force top.dte_node_4.RS.local_nodeID           = 4;
     top.dte_node_4.RS.plca_en                      = true;
+
+    force top.dte_node_5.RS.local_nodeID           = 5;
     top.dte_node_5.RS.plca_en                      = true;
+
+    force top.dte_node_6.RS.local_nodeID           = 6;
     top.dte_node_6.RS.plca_en                      = true;
+
+//  force top.dte_node_7.RS.local_nodeID           = 7;
 //  top.dte_node_7.RS.plca_en                      = true;
+//
+//  force top.dte_node_8.RS.local_nodeID           = 8;
 //  top.dte_node_8.RS.plca_en                      = true;
+//
+//  force top.dte_node_9.RS.local_nodeID           = 9;
 //  top.dte_node_9.RS.plca_en                      = true;
+//
+//  force top.dte_node_10.RS.local_nodeID          = 10;
 //  top.dte_node_10.RS.plca_en                     = true;
+//
+//  force top.dte_node_11.RS.local_nodeID          = 11;
 //  top.dte_node_11.RS.plca_en                     = true;
+//
+//  force top.dte_node_12.RS.local_nodeID          = 12;
 //  top.dte_node_12.RS.plca_en                     = true;
+//
+//  force top.dte_node_13.RS.local_nodeID          = 13;
 //  top.dte_node_13.RS.plca_en                     = true;
+//
+//  force top.dte_node_14.RS.local_nodeID          = 14;
 //  top.dte_node_14.RS.plca_en                     = true;
+//
+//  force top.dte_node_15.RS.local_nodeID          = 15;
 //  top.dte_node_15.RS.plca_en                     = true;
 
-    // top.dte_node_0.RS.dplca_min_node_count         = 4;
-
-    top.dte_node_0.RS.aging_cycles                 = 32'd32;
-    top.dte_node_1.RS.aging_cycles                 = 32'd32;
-    top.dte_node_2.RS.aging_cycles                 = 32'd32;
-    top.dte_node_3.RS.aging_cycles                 = 32'd32;
-    top.dte_node_4.RS.aging_cycles                 = 32'd32;
-    top.dte_node_5.RS.aging_cycles                 = 32'd32;
-    top.dte_node_6.RS.aging_cycles                 = 32'd32;
-//  top.dte_node_7.RS.aging_cycles                 = 32'd32;
-//  top.dte_node_8.RS.aging_cycles                 = 32'd32;
-//  top.dte_node_9.RS.aging_cycles                 = 32'd32;
-//  top.dte_node_10.RS.aging_cycles                = 32'd32;
-//  top.dte_node_11.RS.aging_cycles                = 32'd32;
-//  top.dte_node_12.RS.aging_cycles                = 32'd32;
-//  top.dte_node_13.RS.aging_cycles                = 32'd32;
-//  top.dte_node_14.RS.aging_cycles                = 32'd32;
-//  top.dte_node_15.RS.aging_cycles                = 32'd32;
-
-    top.dte_node_0.RS.dplca_en                     = true;
-    top.dte_node_1.RS.dplca_en                     = true;
-    top.dte_node_2.RS.dplca_en                     = true;
-    top.dte_node_3.RS.dplca_en                     = true;
-    top.dte_node_4.RS.dplca_en                     = true;
-    top.dte_node_5.RS.dplca_en                     = true;
-    top.dte_node_6.RS.dplca_en                     = true;
-//  top.dte_node_7.RS.dplca_en                     = true;
-//  top.dte_node_8.RS.dplca_en                     = true;
-//  top.dte_node_9.RS.dplca_en                     = true;
-//  top.dte_node_10.RS.dplca_en                    = true;
-//  top.dte_node_11.RS.dplca_en                    = true;
-//  top.dte_node_12.RS.dplca_en                    = true;
-//  top.dte_node_13.RS.dplca_en                    = true;
-//  top.dte_node_14.RS.dplca_en                    = true;
-//  top.dte_node_15.RS.dplca_en                    = true;
-
-    top.dte_node_0.RS.coordinator_role_allowed     = true;
-
-    // #5_000_000;
     #100_000;
 
     fork
-        for (i0 = 0; i0 < 50; i0 = i0 + 1)
+        for (i0 = 0; i0 < `NUM_TX_PKTS; i0 = i0 + 1)
         begin
-            d0 = $urandom_range(500_000, 0);
-            $display(d0, " Node0 MAC Delay");
+            d0 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d0 = 0;
+`endif
+            // $display(d0, " Node0 MAC Delay");
             #d0 top.dte_node_0.MAC.MA_DATA_request(destination_address, source_address, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 0 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i0, ": Node 0 MA_DATA.request serviced");
         end
 
-        for (i1 = 0; i1 < 50; i1 = i1 + 1)
+        for (i1 = 0; i1 < `NUM_TX_PKTS; i1 = i1 + 1)
         begin
-            d1 = $urandom_range(500_000, 0);
-            $display(d1, " Node1 MAC Delay");
+            d1 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d1 = 0;
+`endif
+            // $display(d1, " Node1 MAC Delay");
             #d1 top.dte_node_1.MAC.MA_DATA_request(destination_address, source_address + 1, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 1 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i1, ": Node 1 MA_DATA.request serviced");
         end
 
-        for (i2 = 0; i2 < 50; i2 = i2 + 1)
+        for (i2 = 0; i2 < `NUM_TX_PKTS; i2 = i2 + 1)
         begin
-            d2 = $urandom_range(500_000, 0);
-            $display(d2, " Node2 MAC Delay");
+            d2 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d2 = 0;
+`endif
+            // $display(d2, " Node2 MAC Delay");
             #d2 top.dte_node_2.MAC.MA_DATA_request(destination_address, source_address + 2, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 2 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i2, ": Node 2 MA_DATA.request serviced");
         end
 
-        for (i3 = 0; i3 < 50; i3 = i3 + 1)
+        for (i3 = 0; i3 < `NUM_TX_PKTS; i3 = i3 + 1)
         begin
-            d3 = $urandom_range(500_000, 0);
-            $display(d3, " Node3 MAC Delay");
+            d3 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d3 = 0;
+`endif
+            // $display(d3, " Node3 MAC Delay");
             #d3 top.dte_node_3.MAC.MA_DATA_request(destination_address, source_address + 3, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 3 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i3, ": Node 3 MA_DATA.request serviced");
         end
 
-        for (i4 = 0; i4 < 50; i4 = i4 + 1)
+        for (i4 = 0; i4 < `NUM_TX_PKTS; i4 = i4 + 1)
         begin
-            d4 = $urandom_range(500_000, 0);
-            $display(d4, " Node4 MAC Delay");
+            d4 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d4 = 0;
+`endif
+            // $display(d4, " Node4 MAC Delay");
             #d4 top.dte_node_4.MAC.MA_DATA_request(destination_address, source_address + 4, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 4 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i4, ": Node 4 MA_DATA.request serviced");
         end
 
-        for (i5 = 0; i5 < 50; i5 = i5 + 1)
+        for (i5 = 0; i5 < `NUM_TX_PKTS; i5 = i5 + 1)
         begin
-            d5 = $urandom_range(500_000, 0);
-            $display(d5, " Node5 MAC Delay");
+            d5 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d5 = 0;
+`endif
+            // $display(d5, " Node5 MAC Delay");
             #d5 top.dte_node_5.MAC.MA_DATA_request(destination_address, source_address + 5, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 5 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i5, ": Node 5 MA_DATA.request serviced");
         end
 
-        for (i6 = 0; i6 < 50; i6 = i6 + 1)
+        for (i6 = 0; i6 < `NUM_TX_PKTS; i6 = i6 + 1)
         begin
-            d6 = $urandom_range(50_000, 0);
-            $display(d6, " Node6 MAC Delay");
+            d6 = $urandom_range(`RAND_TX_MAX, 0);
+`ifndef RANDOM_TX
+            d6 = 0;
+`endif
+            // $display(d6, " Node6 MAC Delay");
             #d6 top.dte_node_6.MAC.MA_DATA_request(destination_address, source_address + 6, mac_service_data_unit, frame_check_sequence);
-            $display($time, " Node 6 MA_DATA.request serviced");
+            $display($time, ": Pkt ", i6, ": Node 6 MA_DATA.request serviced");
         end
 
     join
+
+/**********************************************************************/
 
     $stop;
     $finish;

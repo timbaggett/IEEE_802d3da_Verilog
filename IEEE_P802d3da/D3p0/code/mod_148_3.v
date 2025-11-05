@@ -271,6 +271,11 @@ begin
         begin
             next_mod_148_3_state <= NEXT_TX_OPPORTUNITY;
         end
+        // Comment R1-61 for D3.2
+        if( (rx_cmd == BEACON) && (local_nodeID != 0) )
+        begin
+            next_mod_148_3_state <= SYNCING;
+        end
     end
 
     TRANSMIT:
@@ -301,7 +306,8 @@ begin
     begin
         if(((local_nodeID == 0) && (curID >= plca_node_count)) || (curID == 255) && ((dplca_txop_table_upd || (dplca_aging == OFF)) || (!dplca_en)))
         begin
-            next_mod_148_3_state <= RESYNC;
+            // Add processing delay to prevent BEACON while last TO packet still asserting RXDV
+            #2300 next_mod_148_3_state <= RESYNC;
         end
         if((((local_nodeID != 0) || (curID < plca_node_count)) && (curID != 255)) && ((dplca_txop_table_upd || (dplca_aging == OFF)) || (!dplca_en)))
         begin
